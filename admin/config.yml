@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "content/uploads"
+public_folder: "/content/uploads"
+
+locale: "de"
+
+collections:
+  - name: "termine"
+    label: "Termine"
+    files:
+      - file: "content/termine.json"
+        label: "Terminliste"
+        name: "termine"
+        fields:
+          - label: "Termine"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Datum (z.B. 10.01.2026)", name: "date", widget: "string" }
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
+
+  - name: "einstellungen"
+    label: "Einstellungen"
+    files:
+      - file: "content/settings.json"
+        label: "Website-Einstellungen"
+        name: "settings"
+        fields:
+          - { label: "Header-Bild", name: "heroImage", widget: "image", required: false, hint: "Querformat empfohlen, mind. 1600px breit" }
+          - { label: "Alt-Text (Bildbeschreibung)", name: "heroImageAlt", widget: "string", required: false }
+
+  - name: "aktuelles"
+    label: "Aktuelles"
+    files:
+      - file: "content/aktuelles.json"
+        label: "Beiträge"
+        name: "aktuelles"
+        fields:
+          - label: "Beiträge"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+              - { label: "Bild (optional)", name: "image", widget: "image", required: false }
+              - { label: "Text", name: "text", widget: "text" }
+
+  - name: "partner"
+    label: "Partner"
+    files:
+      - file: "content/partner.json"
+        label: "Partnerliste"
+        name: "partner"
+        fields:
+          - label: "Partner"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Logo (optional)", name: "logo", widget: "image", required: false }
