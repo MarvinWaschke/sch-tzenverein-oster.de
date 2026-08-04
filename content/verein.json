@@ -101,51 +101,51 @@
     ]
   },
   "festvorstand": {
-    "photo": "",
+    "photo": "/content/uploads/_A745777.webp",
     "members": [
       {
         "role": "Oberst",
-        "name": ""
+        "name": "Marcel Steinkuhl​"
       },
       {
         "role": "Hauptmann",
-        "name": ""
+        "name": "Bernd Scheipers"
       },
       {
         "role": "Adjutant",
-        "name": ""
+        "name": "Bernd Krumme"
       },
       {
         "role": "Adjutant",
-        "name": ""
+        "name": "Frank Förster"
       },
       {
         "role": "Königsoffizier",
-        "name": ""
+        "name": "​Ralf Ehling"
       },
       {
         "role": "Königsoffizier",
-        "name": ""
+        "name": "Bernd Michael Tombült"
       },
       {
         "role": "Fähnrich",
-        "name": ""
+        "name": "Benedikt Ostkotte"
       },
       {
         "role": "Fahnenoffizier",
-        "name": ""
+        "name": "Torsten Ruhkamp"
       },
       {
         "role": "Fahnenoffizier",
-        "name": ""
+        "name": "Niklas Kuhmann"
       },
       {
         "role": "Kaiseroffizier",
-        "name": ""
+        "name": "​Fabian Niehuesbernd"
       },
       {
         "role": "Kaiseroffizier",
-        "name": ""
+        "name": "Normen Dierkskötter"
       }
     ]
   },
