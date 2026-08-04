@@ -24,6 +24,24 @@ collections:
               - { label: "Titel", name: "title", widget: "string" }
               - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
 
+  - name: "jubilaeum"
+    label: "Jubiläum 2026"
+    files:
+      - file: "content/jubilaeum.json"
+        label: "Plakat & Ablaufplan"
+        name: "jubilaeum"
+        fields:
+          - { label: "Plakat (Bild)", name: "posterImage", widget: "image", required: false, hint: "Am besten als JPG/PNG hochladen, Hochformat" }
+          - label: "Ablaufplan"
+            name: "ablaufplan"
+            widget: "list"
+            required: false
+            summary: "{{fields.time}} — {{fields.title}}"
+            fields:
+              - { label: "Uhrzeit / Tag", name: "time", widget: "string" }
+              - { label: "Programmpunkt", name: "title", widget: "string" }
+              - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
+
   - name: "einstellungen"
     label: "Einstellungen"
     files:
