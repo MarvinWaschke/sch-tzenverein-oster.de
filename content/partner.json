@@ -1,8 +1,9 @@
 {
   "items": [
     {
-      "name": "Gaststätte Happens Hof  Oster 238  48607 Ochtrup   ​  www.happens-hof.de",
-      "logo": "/content/uploads/Happens.jpg"
+      "name": "Gaststätte Happens Hof  ",
+      "logo": "/content/uploads/Happens.jpg",
+      "address": "Oster 238  \n48607 Ochtrup   ​  \n\nwww.happens-hof.de"
     },
     {
       "name": "Partner folgt",
