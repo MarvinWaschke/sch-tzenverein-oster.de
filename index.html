@@ -243,36 +243,24 @@
   }
   @media (max-width:820px){ .jubilaeum-grid{ grid-template-columns:1fr; } }
 
-  .jubilaeum-badge{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:150px; height:150px;
-    border-radius:50%;
-    border:1.5px solid var(--gold);
-    position:relative;
-    font-family:'Fraunces', serif;
-    color:var(--green);
-    text-align:center;
-    flex-shrink:0;
-  }
-  .jubilaeum-badge::before{
-    content:"";
-    position:absolute; inset:14px;
-    border:1px solid var(--gold-soft);
-    border-radius:50%;
-  }
-  .jubilaeum-badge .num{ font-size:2rem; font-weight:700; line-height:1; }
-  .jubilaeum-badge .txt{ font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; margin-top:0.2rem; }
+  .poster-visual{ display:flex; justify-content:center; padding:2rem 0; }
 
-  .jubilaeum-visual{ display:flex; justify-content:center; }
-
-  .jubilaeum-list{ list-style:none; margin-top:1.6rem; display:grid; gap:0.9rem; }
-  .jubilaeum-list li{
-    display:flex; gap:0.9rem; align-items:baseline;
-    font-size:0.95rem; color:var(--ink-soft);
-    border-bottom:1px solid var(--line);
-    padding-bottom:0.7rem;
+  .poster-frame{
+    background:var(--white);
+    padding:10px 10px 26px;
+    box-shadow:0 25px 45px rgba(21,40,32,0.28), 0 4px 12px rgba(21,40,32,0.15);
+    transform:rotate(-4deg);
+    max-width:280px;
+    transition:transform 0.3s ease;
   }
-  .jubilaeum-list .date{ font-weight:600; color:var(--green); min-width:110px; }
+  .poster-frame:hover{ transform:rotate(-1deg) scale(1.02); }
+  .poster-frame img{ width:100%; display:block; }
+  .poster-frame .empty-note{ width:220px; }
+
+  .ablaufplan-block{ margin-top:4rem; padding-top:3rem; border-top:1px solid var(--line); }
+  .ablaufplan-block .divider span:first-child{
+    font-family:'Fraunces', serif; font-size:1.3rem; color:var(--green); white-space:nowrap;
+  }
 
   /* ---------- Termine ---------- */
   .termine-list{ list-style:none; }
@@ -403,8 +391,8 @@
     </button>
     <nav class="links" id="navLinks">
       <a href="#aktuelles">Aktuelles</a>
-      <a href="#jubilaeum">Jubiläum 2026</a>
       <a href="#termine">Termine</a>
+      <a href="#jubilaeum">Jubiläum 2026</a>
       <a href="#verein">Verein</a>
       <a href="#partner">Partner</a>
       <a href="#kontakt">Kontakt</a>
@@ -424,8 +412,8 @@
       <h1>Tradition, die man&nbsp;feiert.</h1>
       <p class="lead">Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.</p>
       <div class="btn-row">
-        <a href="#jubilaeum" class="btn btn-primary">Jubiläum 2026 entdecken</a>
-        <a href="#termine" class="btn btn-ghost">Alle Termine</a>
+        <a href="#termine" class="btn btn-primary">Alle Termine</a>
+        <a href="#jubilaeum" class="btn btn-ghost">Jubiläum 2026 entdecken</a>
       </div>
     </div>
   </section>
@@ -444,33 +432,6 @@
     </div>
   </section>
 
-  <!-- JUBILÄUM 2026 -->
-  <section class="jubilaeum" id="jubilaeum">
-    <div class="wrap">
-      <div class="jubilaeum-grid">
-        <div class="reveal">
-          <span class="eyebrow">Besonderes Jahr</span>
-          <h2>375 Jahre Oster — ein Jubiläum mit vielen Gesichtern</h2>
-          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;">2026 ist für uns ein Ausnahmejahr: Gleich mehrere Ortsteile feiern runde Jubiläen, bevor im September das große Jubiläumsschützenfest 375 Jahre Oster den Höhepunkt bildet.</p>
-          <ul class="jubilaeum-list">
-            <li><span class="date">09.05.2026</span><span>Jubiläumsschützenfest — 375 Jahre Alt &amp; Bollhorst</span></li>
-            <li><span class="date">16.05.2026</span><span>Jubiläumsschützenfest — Rothenberge</span></li>
-            <li><span class="date">30.05.2026</span><span>Jubiläumsschützenfest — 400 Jahre Wester</span></li>
-            <li><span class="date">11.–14.09.2026</span><span>Jubiläumsschützenfest — 375 Jahre Oster</span></li>
-          </ul>
-        </div>
-        <div class="jubilaeum-visual reveal">
-          <div class="jubilaeum-badge">
-            <div>
-              <div class="num">375</div>
-              <div class="txt">Jahre Oster</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TERMINE -->
   <section id="termine">
     <div class="wrap">
@@ -482,6 +443,30 @@
       <ul class="termine-list reveal" id="termineList">
         <li class="empty-note" style="list-style:none; padding:1rem 0;">Lade Termine…</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- JUBILÄUM 2026 -->
+  <section class="jubilaeum" id="jubilaeum">
+    <div class="wrap">
+      <div class="jubilaeum-grid">
+        <div class="reveal">
+          <span class="eyebrow">Besonderes Jahr</span>
+          <h2>375 Jahre Schützenverein Oster</h2>
+          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;">2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft.</p>
+        </div>
+        <div class="poster-visual reveal">
+          <div class="poster-frame" id="posterFrame">
+            <p class="empty-note" style="padding:3rem 1rem; text-align:center;">Plakat folgt</p>
+          </div>
+        </div>
+      </div>
+      <div class="ablaufplan-block reveal">
+        <div class="divider"><span>Ablaufplan</span><span class="line"></span></div>
+        <ul class="termine-list" id="ablaufplanList">
+          <li class="empty-note" style="list-style:none; padding:1rem 0;">Ablaufplan folgt in Kürze.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -592,6 +577,27 @@
       }
     });
   }
+
+  // Jubiläum: Plakat & Ablaufplan laden
+  fetch('content/jubilaeum.json')
+    .then(r => r.json())
+    .then(data => {
+      const frame = document.getElementById('posterFrame');
+      if (data.posterImage) {
+        frame.innerHTML = `<img src="${data.posterImage}" alt="Plakat 375 Jahre Schützenverein Oster">`;
+      }
+      const list = document.getElementById('ablaufplanList');
+      const items = data.ablaufplan || [];
+      if (items.length) {
+        list.innerHTML = items.map(a => `
+          <li class="termine-item">
+            <span class="termine-date">${a.time || ''}</span>
+            ${ringIcon}
+            <span class="termine-title">${a.title || ''}${a.sub ? `<span class="sub">${a.sub}</span>` : ''}</span>
+          </li>`).join('');
+      }
+    })
+    .catch(() => {});
 
   // Header-Bild laden (falls im Panel hinterlegt)
   fetch('content/settings.json')
