@@ -325,10 +325,31 @@
 
   /* ---------- Partner ---------- */
   .partner-row{
-    display:flex; flex-wrap:wrap; gap:2.5rem;
-    align-items:center;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.5rem;
     padding-top:1rem;
   }
+  .partner-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    display:flex; flex-direction:column; gap:0.9rem;
+  }
+  .partner-card .logo-wrap{
+    height:56px; display:flex; align-items:center; justify-content:flex-start;
+  }
+  .partner-card .logo-wrap img{ max-height:56px; max-width:150px; object-fit:contain; }
+  .partner-card .logo-wrap .logo-fallback{
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--green);
+  }
+  .partner-card h3{ font-size:1.02rem; color:var(--green); }
+  .partner-card address{ font-style:normal; font-size:0.86rem; color:var(--ink-soft); line-height:1.5; }
+  .partner-card a.website-link{
+    font-size:0.86rem; color:var(--gold); font-weight:600;
+    display:inline-flex; align-items:center; gap:0.3rem; width:fit-content;
+  }
+  .partner-card a.website-link:hover{ color:var(--green); }
   .partner-slot{
     width:150px; height:70px;
     border:1px dashed var(--line);
@@ -660,10 +681,20 @@
       const row = document.getElementById('partnerRow');
       const items = (data.items || []).filter(p => p.name);
       if (!items.length) { row.innerHTML = '<p class="empty-note">Noch keine Partner eingetragen.</p>'; return; }
-      row.innerHTML = items.map(p => p.logo
-        ? `<div class="partner-slot" style="border-style:solid; padding:0;"><img src="${p.logo}" alt="${p.name}" style="max-height:60px; max-width:130px; object-fit:contain;"></div>`
-        : `<div class="partner-slot">${p.name}</div>`
-      ).join('');
+      row.innerHTML = items.map(p => {
+        const logoHtml = p.logo
+          ? `<img src="${p.logo}" alt="${p.name}">`
+          : `<span class="logo-fallback">${p.name}</span>`;
+        let websiteUrl = (p.website || '').trim();
+        if (websiteUrl && !/^https?:\/\//i.test(websiteUrl)) websiteUrl = 'https://' + websiteUrl;
+        return `
+        <div class="partner-card">
+          <div class="logo-wrap">${logoHtml}</div>
+          <h3>${p.name}</h3>
+          ${p.address ? `<address>${p.address.replace(/\n/g, '<br>')}</address>` : ''}
+          ${websiteUrl ? `<a class="website-link" href="${websiteUrl}" target="_blank" rel="noopener">${p.website.replace(/^https?:\/\//i,'')}</a>` : ''}
+        </div>`;
+      }).join('');
     })
     .catch(() => { document.getElementById('partnerRow').innerHTML = '<p class="empty-note">Partner konnten nicht geladen werden.</p>'; });
 </script>
