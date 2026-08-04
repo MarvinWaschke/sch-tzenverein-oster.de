@@ -83,3 +83,5 @@ collections:
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Logo (optional)", name: "logo", widget: "image", required: false }
+              - { label: "Adresse (optional)", name: "address", widget: "text", required: false, hint: "Mehrzeilig möglich, z.B. Straße + PLZ Ort" }
+              - { label: "Website (optional)", name: "website", widget: "string", required: false, hint: "z.B. www.beispiel-firma.de" }
