@@ -24,6 +24,59 @@ collections:
               - { label: "Titel", name: "title", widget: "string" }
               - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
 
+  - name: "verein"
+    label: "Der Verein"
+    files:
+      - file: "content/verein.json"
+        label: "Vorstand, Festvorstand & Könige"
+        name: "verein"
+        fields:
+          - label: "Vorstand"
+            name: "vorstand"
+            widget: "object"
+            fields:
+              - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - label: "Mitglieder"
+                name: "members"
+                widget: "list"
+                summary: "{{fields.role}} — {{fields.name}}"
+                fields:
+                  - { label: "Rolle", name: "role", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string", required: false }
+          - label: "Festvorstand"
+            name: "festvorstand"
+            widget: "object"
+            fields:
+              - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - label: "Mitglieder"
+                name: "members"
+                widget: "list"
+                summary: "{{fields.role}} — {{fields.name}}"
+                fields:
+                  - { label: "Rolle", name: "role", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string", required: false }
+          - label: "Könige & Kaiser"
+            name: "koenige"
+            widget: "object"
+            fields:
+              - label: "Amtierendes Paar"
+                name: "aktuellesPaar"
+                widget: "object"
+                fields:
+                  - { label: "Jahr", name: "jahr", widget: "string" }
+                  - { label: "Typ", name: "typ", widget: "select", options: ["Königspaar", "Kaiserpaar"] }
+                  - { label: "Name(n)", name: "name", widget: "string" }
+                  - { label: "Bild", name: "photo", widget: "image", required: false }
+              - { label: "Gruppenbild Königspaar & Festvorstand", name: "gruppenbildFestvorstand", widget: "image", required: false }
+              - label: "Chronik"
+                name: "historie"
+                widget: "list"
+                summary: "{{fields.jahr}} — {{fields.name}}"
+                fields:
+                  - { label: "Jahr", name: "jahr", widget: "string" }
+                  - { label: "Typ", name: "typ", widget: "select", options: ["Königspaar", "Kaiserpaar"] }
+                  - { label: "Name(n)", name: "name", widget: "string" }
+
   - name: "jubilaeum"
     label: "Jubiläum 2026"
     files:
