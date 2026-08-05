@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Schützenverein Oster e.V.</title>
 <meta name="description" content="Schützenverein Oster e.V. — Tradition, Gemeinschaft und Schützenfeste in Oster bei Ochtrup.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts werden erst nach Cookie-Einwilligung geladen (siehe Skript am Seitenende) -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root{
@@ -351,7 +349,8 @@
   .aktuelles-card .body{ padding:1.5rem; }
   .aktuelles-card .date{ font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.5rem; display:block; }
   .aktuelles-card h3{ font-size:1.1rem; margin-bottom:0.6rem; }
-  .aktuelles-card p{ color:var(--ink-soft); font-size:0.92rem; }
+  .aktuelles-card p{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:0.7rem; }
+  .aktuelles-card p:last-child{ margin-bottom:0; }
   .empty-note{ color:var(--ink-soft); font-size:0.92rem; font-style:italic; }
 
   /* ---------- Partner ---------- */
@@ -428,6 +427,26 @@
     transition:opacity 0.6s ease, transform 0.6s ease;
   }
   .reveal.in{ opacity:1; transform:translateY(0); }
+  /* ---------- Cookie-Banner ---------- */
+  #cookieBanner{
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--green-deep); color:var(--white);
+    padding:1.3rem 1.5rem; box-shadow:0 -8px 24px rgba(0,0,0,0.2);
+    display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; justify-content:space-between;
+  }
+  #cookieBanner p{ font-size:0.86rem; color:rgba(255,253,248,0.82); max-width:640px; margin:0; line-height:1.5; }
+  #cookieBanner a{ color:var(--gold-soft); text-decoration:underline; }
+  #cookieBanner .cookie-actions{ display:flex; gap:0.7rem; flex-wrap:wrap; }
+  #cookieBanner button{
+    font-family:'Work Sans', sans-serif; font-size:0.84rem; font-weight:600;
+    padding:0.65rem 1.3rem; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  }
+  #cookieBanner .btn-accept{ background:var(--gold); color:var(--green-deep); }
+  #cookieBanner .btn-accept:hover{ background:var(--gold-soft); }
+  #cookieBanner .btn-essential{ background:transparent; border-color:rgba(255,253,248,0.4); color:var(--white); }
+  #cookieBanner .btn-essential:hover{ border-color:var(--white); }
+  #cookieSettingsLink{ cursor:pointer; }
+  @media (max-width:640px){ #cookieBanner{ flex-direction:column; align-items:stretch; text-align:left; } }
 </style>
 </head>
 <body>
@@ -607,13 +626,53 @@
     </div>
     <div class="bottom-bar">
       <span>© 2026 Schützenverein Oster e.V.</span>
-      <a href="#">Impressum &amp; Datenschutz</a>
+      <span><a href="datenschutz.html">Impressum &amp; Datenschutz</a> · <a id="cookieSettingsLink">Cookie-Einstellungen</a></span>
     </div>
   </div>
 </footer>
 
+<div id="cookieBanner" style="display:none;">
+  <p>Wir nutzen auf dieser Seite Google Fonts zur Darstellung unserer Schrift. Dabei wird eine Verbindung zu Google-Servern hergestellt und deine IP-Adresse übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-actions">
+    <button class="btn-essential" id="cookieEssentialBtn">Nur essenzielle</button>
+    <button class="btn-accept" id="cookieAcceptBtn">Alle akzeptieren</button>
+  </div>
+</div>
+
 <script>
   // Mobile menu
+  // ---------- Cookie-Consent ----------
+  const COOKIE_KEY = 'so-cookie-consent'; // 'all' | 'essential'
+
+  function loadGoogleFonts() {
+    if (document.getElementById('gfonts-link')) return;
+    const link = document.createElement('link');
+    link.id = 'gfonts-link';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap';
+    document.head.appendChild(link);
+  }
+
+  function applyConsent(choice) {
+    localStorage.setItem(COOKIE_KEY, choice);
+    if (choice === 'all') loadGoogleFonts();
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+
+  const savedConsent = localStorage.getItem(COOKIE_KEY);
+  if (savedConsent === 'all') {
+    loadGoogleFonts();
+  } else if (!savedConsent) {
+    document.getElementById('cookieBanner').style.display = 'flex';
+  }
+
+  document.getElementById('cookieAcceptBtn').addEventListener('click', () => applyConsent('all'));
+  document.getElementById('cookieEssentialBtn').addEventListener('click', () => applyConsent('essential'));
+  document.getElementById('cookieSettingsLink').addEventListener('click', () => {
+    document.getElementById('cookieBanner').style.display = 'flex';
+  });
+  // ---------- Ende Cookie-Consent ----------
+
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => {
@@ -742,6 +801,14 @@
     .catch(() => { document.getElementById('termineList').innerHTML = '<li class="empty-note" style="list-style:none; padding:1rem 0;">Termine konnten nicht geladen werden.</li>'; });
 
   // Aktuelles laden
+  function formatParagraphs(text) {
+    if (!text) return '';
+    return text
+      .split(/\n\s*\n/)                          // Leerzeile = neuer Absatz
+      .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`) // einzelner Zeilenumbruch = <br>
+      .join('');
+  }
+
   fetch('content/aktuelles.json')
     .then(r => r.json())
     .then(data => {
@@ -756,7 +823,7 @@
           <div class="body">
             <span class="date">${d}</span>
             <h3>${post.title || ''}</h3>
-            <p>${post.text || ''}</p>
+            ${formatParagraphs(post.text)}
           </div>
         </article>`;
       }).join('');
