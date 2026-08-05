@@ -312,6 +312,18 @@
   .role-list .person{ font-weight:600; color:var(--green); text-align:right; }
   @media (max-width:640px){ .role-list{ grid-template-columns:1fr; } }
 
+  .ehrenvorstand-block{ margin-top:2.5rem !important; }
+  .ehren-list{
+    list-style:none;
+    display:flex; flex-wrap:wrap; gap:0.7rem;
+  }
+  .ehren-list li{
+    background:var(--white); border:1px solid var(--line);
+    padding:0.55rem 1rem; font-size:0.88rem; color:var(--green);
+    display:flex; align-items:baseline; gap:0.5rem;
+  }
+  .ehren-list li .jahre{ color:var(--ink-soft); font-size:0.78rem; }
+
   .koenige-current{
     display:flex; gap:2rem; align-items:center; flex-wrap:wrap;
   }
@@ -564,6 +576,12 @@
         <ul class="role-list" id="festvorstandList"><li class="empty-note" style="list-style:none;">Lade…</li></ul>
       </div>
 
+      <!-- Ehrenvorstandsmitglieder -->
+      <div class="verein-block reveal ehrenvorstand-block">
+        <h3 class="verein-block-title" style="font-size:1.1rem;">Ehrenvorstandsmitglieder</h3>
+        <ul class="ehren-list" id="ehrenvorstandList"><li class="empty-note" style="list-style:none;">Lade…</li></ul>
+      </div>
+
       <!-- Könige & Kaiser -->
       <div class="verein-block reveal">
         <h3 class="verein-block-title">Könige &amp; Kaiser</h3>
@@ -748,6 +766,13 @@
       if (data.festvorstand) {
         renderPhoto('festvorstandPhoto', data.festvorstand.photo, 'Festvorstand');
         renderRoles('festvorstandList', data.festvorstand.members);
+      }
+      const ehrenEl = document.getElementById('ehrenvorstandList');
+      const ehrenItems = data.ehrenvorstand || [];
+      if (!ehrenItems.length) {
+        ehrenEl.innerHTML = '<li class="empty-note" style="list-style:none; background:none; border:none; padding:0;">Noch keine Angaben.</li>';
+      } else {
+        ehrenEl.innerHTML = ehrenItems.map(m => `<li>${m.name || ''}${m.jahre ? `<span class="jahre">aktiv seit ${m.jahre}</span>` : ''}</li>`).join('');
       }
       if (data.koenige) {
         const k = data.koenige;
