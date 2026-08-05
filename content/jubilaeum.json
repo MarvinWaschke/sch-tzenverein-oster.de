@@ -1,28 +1,109 @@
 {
   "posterImage": "content/uploads/plakat-jubilaeum.jpg",
   "ablaufplan": [
-    { "time": "Fr, 17:00", "title": "Antreten aller Schützenbrüder am Festzelt", "sub": "zum Grünholen" },
-    { "time": "Fr, 18:00", "title": "Flasche ausgraben", "sub": "beim alten Kaiser Heinz Struck" },
-    { "time": "Fr, 20:00", "title": "Dämmerschoppen", "sub": "mit DJ Partyfire" },
-
-    { "time": "Sa, 12:15", "title": "Abmarsch vom Kranenbült", "sub": "" },
-    { "time": "Sa, 12:30", "title": "Gefallenenehrung am Ehrenmal", "sub": "" },
-    { "time": "Sa, 13:00", "title": "Heilige Messe auf dem Festplatz", "sub": "" },
-    { "time": "Sa, 14:00", "title": "Abmarsch zum Kaiser Heinz Struck", "sub": "" },
-    { "time": "Sa, 15:00", "title": "Sternmarsch", "sub": "" },
-    { "time": "Sa, 16:30", "title": "Ansprache auf dem Fußballplatz FC Oster", "sub": "" },
-    { "time": "Sa, ca. 17:30", "title": "Kaiserschießen", "sub": "" },
-    { "time": "Sa, 21:00", "title": "Schützenparty", "sub": "mit DJ Partyfire" },
-
-    { "time": "So, ab 9:30", "title": "Großes Frühstücksbuffet auf dem Festzelt", "sub": "für Senioren, Frauen und Ehemalige — Anmeldung bei Happens Hof: Bernhard Ermke 0170 7432053 oder Heinz Feldmann 0151 40140488" },
-    { "time": "So, 10:00", "title": "Ausholen des neuen Kaisers", "sub": "" },
-    { "time": "So, 12:00", "title": "Rückmarsch zum Festzelt", "sub": "" },
-    { "time": "So, 12:30", "title": "Familien-Frühschoppen", "sub": "" },
-    { "time": "So, 18:30", "title": "Antreten am Ehrenmal", "sub": "für alle Vereinsmitglieder" },
-    { "time": "So, 19:00", "title": "Zapfenstreich", "sub": "auf dem Fußballplatz FC Oster" },
-    { "time": "So, 20:00", "title": "Kaiserball", "sub": "mit der Band FUN TIME" },
-
-    { "time": "Mo, 12:00", "title": "Schützenfestausklang", "sub": "mit Bummel durch den Vereinsbezirk" },
-    { "time": "Mo, ab 18:00", "title": "Gemeinsames Hühnersuppe-Essen im Festzelt", "sub": "" }
+    {
+      "time": "Fr, 17:00",
+      "title": "Antreten aller Schützenbrüder am Festzelt",
+      "sub": "zum Grünholen"
+    },
+    {
+      "time": "Fr, 18:00",
+      "title": "Flasche ausgraben",
+      "sub": "beim alten Kaiser Heinz Struck"
+    },
+    {
+      "time": "Fr, 20:00",
+      "title": "Dämmerschoppen",
+      "sub": "mit DJ Partyfire"
+    },
+    {
+      "time": "Sa, 12:15",
+      "title": "Abmarsch vom Kranenbült",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 12:30",
+      "title": "Gefallenenehrung am Ehrenmal",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 13:00",
+      "title": "Heilige Messe auf dem Festplatz",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 14:00",
+      "title": "Abmarsch zum Kaiser Heinz Struck",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 15:00",
+      "title": "Sternmarsch",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 16:30",
+      "title": "Ansprache auf dem Fußballplatz FC Oster",
+      "sub": ""
+    },
+    {
+      "time": "Sa, ca. 17:30",
+      "title": "Kaiserschießen",
+      "sub": ""
+    },
+    {
+      "time": "Sa, 21:00",
+      "title": "Schützenparty",
+      "sub": "mit DJ Partyfire"
+    },
+    {
+      "time": "So, ab 9:30",
+      "title": "Großes Frühstücksbuffet auf dem Festzelt",
+      "sub": "für Senioren, Frauen und Ehemalige — Anmeldung bei Happens Hof: Bernhard Ermke 0170 7432053 oder Heinz Feldmann 0151 40140488"
+    },
+    {
+      "time": "So, 10:00",
+      "title": "Ausholen des neuen Kaisers",
+      "sub": ""
+    },
+    {
+      "time": "So, 11:00 Uhr",
+      "title": "Damenfrühschoppen"
+    },
+    {
+      "time": "So, 12:00",
+      "title": "Rückmarsch zum Festzelt",
+      "sub": ""
+    },
+    {
+      "time": "So, 12:30",
+      "title": "Familien-Frühschoppen",
+      "sub": ""
+    },
+    {
+      "time": "So, 18:30",
+      "title": "Antreten am Ehrenmal",
+      "sub": "für alle Vereinsmitglieder"
+    },
+    {
+      "time": "So, 19:00",
+      "title": "Zapfenstreich",
+      "sub": "auf dem Fußballplatz FC Oster"
+    },
+    {
+      "time": "So, 20:00",
+      "title": "Kaiserball",
+      "sub": "mit der Band FUN TIME"
+    },
+    {
+      "time": "Mo, 12:00",
+      "title": "Schützenfestausklang",
+      "sub": "mit Bummel durch den Vereinsbezirk"
+    },
+    {
+      "time": "Mo, ab 18:00",
+      "title": "Gemeinsames Hühnersuppe-Essen im Festzelt",
+      "sub": ""
+    }
   ]
 }
