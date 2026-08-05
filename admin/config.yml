@@ -62,7 +62,7 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { label: "Name", name: "name", widget: "string" }
-              - { label: "Aktiv seit (Jahr, optional)", name: "jahre", widget: "string", required: false }
+              - { label: "Anzahl aktive Jahre (optional)", name: "jahre", widget: "string", required: false, hint: "z.B. 25 Jahre — nicht das Startjahr" }
           - label: "Könige & Kaiser"
             name: "koenige"
             widget: "object"
