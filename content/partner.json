@@ -1,7 +1,52 @@
 {
   "items": [
-    { "name": "Partner folgt", "logo": "", "address": "", "website": "" },
-    { "name": "Partner folgt", "logo": "", "address": "", "website": "" },
-    { "name": "Partner folgt", "logo": "", "address": "", "website": "" }
+    {
+      "name": "Gaststätte Happens Hof  ",
+      "logo": "/content/uploads/Happens.jpg",
+      "address": "Oster 238  \n48607 Ochtrup   ​  ",
+      "website": "www.happens-hof.de"
+    },
+    {
+      "name": "Hermann Bücker  ",
+      "logo": "/content/uploads/wsb_193x80_bC3BCcker.jpg",
+      "address": "Bültstraße 13  \n48607 Ochtrup   ​​  ",
+      "website": "www.buecker-ochtrup.de"
+    },
+    {
+      "name": "Getränke Kock  ",
+      "logo": "/content/uploads/Kock.png",
+      "address": "Schützenstraße 1  \n48607 Ochtrup   ​​  ",
+      "website": "www.getraenke-kock.de"
+    },
+    {
+      "name": "Zimmerei & Dachdeckerei  Jürgen Weßling  ",
+      "address": "Oster 232  \n48607 Ochtrup   ​​ ",
+      "website": "www.zimmerei-wessling.de",
+      "logo": "/content/uploads/Bildschirmfoto2013-01-11um19.58.33.png"
+    },
+    {
+      "name": "Volksbank Ochtrup-Laer eG  ",
+      "address": "Bergstraße 6  \n48607 Ochtrup   ​​  ",
+      "website": "www.vbol.de",
+      "logo": "/content/uploads/wsb_300x61_vblo.png"
+    },
+    {
+      "name": "Veranstaltungstechnik Struck  ",
+      "address": "Oster 223  \n48607 Ochtrup   ​​​ ",
+      "website": "www.vtslights.de",
+      "logo": "/content/uploads/wsb_180x130_vtslogo.png"
+    },
+    {
+      "name": "makevisions | Film & Foto  ",
+      "address": "Wilmersstraße 8\n48282 Emsdetten   ​​  ",
+      "website": "www.makevisions.de",
+      "logo": "/content/uploads/makevsns_final_logodesign_RGB.png"
+    },
+    {
+      "name": "Eggert GmbH  ",
+      "address": "Siemensstraße 39a  \n48619 Heek  ​  ",
+      "website": "www.eggert-rohrleitungsbau.de",
+      "logo": "/content/uploads/Eggert GmbH_Logo_Pfade.png"
+    }
   ]
 }
