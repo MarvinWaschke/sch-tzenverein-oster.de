@@ -492,12 +492,12 @@
     <div class="hero-overlay"></div>
     <img class="hero-rings" src="content/uploads/logo.png" alt="">
     <div class="wrap hero-inner">
-      <span class="eyebrow">Oster · bei Ochtrup</span>
-      <h1>Tradition, die man&nbsp;feiert.</h1>
-      <p class="lead">Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.</p>
+      <span class="eyebrow" id="txt-hero-eyebrow">Oster · bei Ochtrup</span>
+      <h1 id="txt-hero-headline">Tradition, die man&nbsp;feiert.</h1>
+      <p class="lead" id="txt-hero-text">Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.</p>
       <div class="btn-row">
-        <a href="#termine" class="btn btn-primary">Alle Termine</a>
-        <a href="#jubilaeum" class="btn btn-ghost">Jubiläum 2026 entdecken</a>
+        <a href="#termine" class="btn btn-primary" id="txt-hero-btn1">Alle Termine</a>
+        <a href="#jubilaeum" class="btn btn-ghost" id="txt-hero-btn2">Jubiläum 2026 entdecken</a>
       </div>
     </div>
   </section>
@@ -506,9 +506,9 @@
   <section id="aktuelles">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Neuigkeiten</span>
-        <h2>Aktuelles</h2>
-        <p>Was sich im Verein tut — kurz und aktuell.</p>
+        <span class="eyebrow" id="txt-aktuelles-eyebrow">Neuigkeiten</span>
+        <h2 id="txt-aktuelles-headline">Aktuelles</h2>
+        <p id="txt-aktuelles-text">Was sich im Verein tut — kurz und aktuell.</p>
       </div>
       <div class="aktuelles-grid reveal" id="aktuellesGrid">
         <p class="empty-note">Lade Beiträge…</p>
@@ -520,9 +520,9 @@
   <section id="termine">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Auf einen Blick</span>
-        <h2>Termine 2026</h2>
-        <p>Vom Winterfest bis zur Generalversammlung — hier steht, wann im Verein etwas los ist.</p>
+        <span class="eyebrow" id="txt-termine-eyebrow">Auf einen Blick</span>
+        <h2 id="txt-termine-headline">Termine 2026</h2>
+        <p id="txt-termine-text">Vom Winterfest bis zur Generalversammlung — hier steht, wann im Verein etwas los ist.</p>
       </div>
       <ul class="termine-list reveal" id="termineList">
         <li class="empty-note" style="list-style:none; padding:1rem 0;">Lade Termine…</li>
@@ -535,9 +535,9 @@
     <div class="wrap">
       <div class="jubilaeum-grid">
         <div class="reveal">
-          <span class="eyebrow">Besonderes Jahr</span>
-          <h2>375 Jahre Schützenverein Oster</h2>
-          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;">2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft.</p>
+          <span class="eyebrow" id="txt-jubilaeum-eyebrow">Besonderes Jahr</span>
+          <h2 id="txt-jubilaeum-headline">375 Jahre Schützenverein Oster</h2>
+          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;" id="txt-jubilaeum-text">2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft.</p>
         </div>
         <div class="poster-visual reveal">
           <div class="poster-frame" id="posterFrame">
@@ -558,9 +558,9 @@
   <section id="verein" style="background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Wer wir sind</span>
-        <h2>Der Verein</h2>
-        <p>Getragen von Vorstand, Festvorstand und vielen ehrenamtlichen Händen — das ist der Schützenverein Oster.</p>
+        <span class="eyebrow" id="txt-verein-eyebrow">Wer wir sind</span>
+        <h2 id="txt-verein-headline">Der Verein</h2>
+        <p id="txt-verein-text">Getragen von Vorstand, Festvorstand und vielen ehrenamtlichen Händen — das ist der Schützenverein Oster.</p>
       </div>
 
       <!-- Vorstand -->
@@ -608,9 +608,9 @@
   <section id="partner">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Danke</span>
-        <h2>Unsere Partner</h2>
-        <p>Ohne die Unterstützung unserer Partner aus der Region wären unsere Feste in dieser Form nicht möglich.</p>
+        <span class="eyebrow" id="txt-partner-eyebrow">Danke</span>
+        <h2 id="txt-partner-headline">Unsere Partner</h2>
+        <p id="txt-partner-text">Ohne die Unterstützung unserer Partner aus der Region wären unsere Feste in dieser Form nicht möglich.</p>
       </div>
       <div class="partner-row reveal" id="partnerRow">
         <p class="empty-note">Lade Partner…</p>
@@ -742,6 +742,21 @@
             <span class="termine-title">${a.title || ''}${a.sub ? `<span class="sub">${a.sub}</span>` : ''}</span>
           </li>`).join('');
       }
+    })
+    .catch(() => {});
+
+  // Texte (Header + Überschriften) laden
+  fetch('content/texte.json')
+    .then(r => r.json())
+    .then(data => {
+      Object.keys(data).forEach(section => {
+        Object.keys(data[section]).forEach(field => {
+          const val = data[section][field];
+          if (!val) return;
+          const el = document.getElementById(`txt-${section}-${field}`);
+          if (el) el.textContent = val;
+        });
+      });
     })
     .catch(() => {});
 
