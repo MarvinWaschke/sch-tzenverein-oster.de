@@ -8,6 +8,58 @@ public_folder: "/content/uploads"
 locale: "de"
 
 collections:
+  - name: "texte"
+    label: "Texte (Überschriften)"
+    files:
+      - file: "content/texte.json"
+        label: "Alle Überschriften & Texte"
+        name: "texte"
+        fields:
+          - label: "Startseite / Header"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Große Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+              - { label: "Button 1 (grün/gold)", name: "btn1", widget: "string" }
+              - { label: "Button 2 (Rahmen)", name: "btn2", widget: "string" }
+          - label: "Bereich \"Aktuelles\""
+            name: "aktuelles"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Termine\""
+            name: "termine"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Jubiläum\""
+            name: "jubilaeum"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Der Verein\""
+            name: "verein"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Partner\""
+            name: "partner"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+
   - name: "termine"
     label: "Termine"
     files:
