@@ -55,6 +55,14 @@ collections:
                 fields:
                   - { label: "Rolle", name: "role", widget: "string" }
                   - { label: "Name", name: "name", widget: "string", required: false }
+          - label: "Ehrenvorstandsmitglieder"
+            name: "ehrenvorstand"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Aktiv seit (Jahr, optional)", name: "jahre", widget: "string", required: false }
           - label: "Könige & Kaiser"
             name: "koenige"
             widget: "object"

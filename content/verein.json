@@ -1,162 +1,176 @@
 {
   "vorstand": {
-    "photo": "/content/uploads/IMG_7628 (1).webp",
+    "photo": "",
     "members": [
       {
         "role": "1. Vorsitzender",
-        "name": "Andre Scheipers"
+        "name": ""
       },
       {
         "role": "2. Vorsitzender",
-        "name": "Matthias Scho"
+        "name": ""
       },
       {
         "role": "1. Schriftführer",
-        "name": "Markus Dinkhoff"
+        "name": ""
       },
       {
         "role": "2. Schriftführer",
-        "name": "Christian Hoffstedde"
+        "name": ""
       },
       {
         "role": "1. Kassierer",
-        "name": "Michell Brillert"
+        "name": ""
       },
       {
         "role": "2. Kassierer",
-        "name": "Bernd Dinkhoff"
+        "name": ""
       },
       {
         "role": "Präsident",
-        "name": "Werner Scheipers "
+        "name": ""
       },
       {
         "role": "Kaiser",
-        "name": "Heinz Struck"
+        "name": ""
       },
       {
         "role": "Jugendvertreter",
-        "name": "Niklas Kuhmann"
+        "name": ""
       },
       {
         "role": "Jugendvertreter",
-        "name": "David Möllers"
+        "name": ""
       },
       {
         "role": "Seniorenbeauftragter",
-        "name": "Heinz Feldmann "
+        "name": ""
       },
       {
         "role": "Seniorenbeauftragter",
-        "name": "Bernhard Ermke"
+        "name": ""
       },
       {
         "role": "Medienbeauftragter",
-        "name": "Marvin Waschke"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Ludger Vennenbernd"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Bernd Scheipers"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Matthias Brockevert"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Marcel Steinkuhl "
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Markus Weßling"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Stefan Scho"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Andreas Struck"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Erich Wolter"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Andre Meierlammers "
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Georg Trindeitmar"
+        "name": ""
       },
       {
         "role": "Beisitzer",
-        "name": "Stephan Weßling"
+        "name": ""
       }
     ]
   },
   "festvorstand": {
-    "photo": "/content/uploads/_A745777.webp",
+    "photo": "",
     "members": [
       {
         "role": "Oberst",
-        "name": "Marcel Steinkuhl​"
+        "name": ""
       },
       {
         "role": "Hauptmann",
-        "name": "Bernd Scheipers"
+        "name": ""
       },
       {
         "role": "Adjutant",
-        "name": "Bernd Krumme"
+        "name": ""
       },
       {
         "role": "Adjutant",
-        "name": "Frank Förster"
+        "name": ""
       },
       {
         "role": "Königsoffizier",
-        "name": "​Ralf Ehling"
+        "name": ""
       },
       {
         "role": "Königsoffizier",
-        "name": "Bernd Michael Tombült"
+        "name": ""
       },
       {
         "role": "Fähnrich",
-        "name": "Benedikt Ostkotte"
+        "name": ""
       },
       {
         "role": "Fahnenoffizier",
-        "name": "Torsten Ruhkamp"
+        "name": ""
       },
       {
         "role": "Fahnenoffizier",
-        "name": "Niklas Kuhmann"
+        "name": ""
       },
       {
         "role": "Kaiseroffizier",
-        "name": "​Fabian Niehuesbernd"
+        "name": ""
       },
       {
         "role": "Kaiseroffizier",
-        "name": "Normen Dierkskötter"
+        "name": ""
       }
     ]
   },
+  "ehrenvorstand": [
+    {
+      "name": "",
+      "jahre": ""
+    },
+    {
+      "name": "",
+      "jahre": ""
+    },
+    {
+      "name": "",
+      "jahre": ""
+    }
+  ],
   "koenige": {
     "aktuellesPaar": {
       "jahr": "2025",
       "typ": "Königspaar",
       "name": "André und Luisa Scheipers",
-      "photo": "/content/uploads/A7300334.webp"
+      "photo": ""
     },
-    "gruppenbildFestvorstand": "/content/uploads/A7300314.webp",
+    "gruppenbildFestvorstand": "",
     "historie": [
       {
         "jahr": "2025",
