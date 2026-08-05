@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "Oster · bei Ochtrup",
+    "headline": "Tradition, die man feiert.",
+    "text": "Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.",
+    "btn1": "Alle Termine",
+    "btn2": "Jubiläum 2026 entdecken"
+  },
+  "aktuelles": {
+    "eyebrow": "Neuigkeiten",
+    "headline": "Aktuelles",
+    "text": "Was sich im Verein tut — kurz und aktuell."
+  },
+  "termine": {
+    "eyebrow": "Auf einen Blick",
+    "headline": "Termine 2026",
+    "text": "Vom Winterfest bis zur Generalversammlung — hier steht, wann im Verein etwas los ist."
+  },
+  "jubilaeum": {
+    "eyebrow": "Besonderes Jahr",
+    "headline": "375 Jahre Schützenverein Oster",
+    "text": "2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft."
+  },
+  "verein": {
+    "eyebrow": "Wer wir sind",
+    "headline": "Der Verein",
+    "text": "Getragen von Vorstand, Festvorstand und vielen ehrenamtlichen Händen — das ist der Schützenverein Oster."
+  },
+  "partner": {
+    "eyebrow": "Danke",
+    "headline": "Unsere Partner",
+    "text": "Ohne die Unterstützung unserer Partner aus der Region wären unsere Feste in dieser Form nicht möglich."
+  }
+}
