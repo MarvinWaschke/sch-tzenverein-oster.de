@@ -1,14 +1,29 @@
 {
   "items": [
-    { "date": "10.01.2026", "title": "Generalversammlung", "sub": "" },
-    { "date": "14.02.2026", "title": "Winterfest", "sub": "" },
-    { "date": "09.05.2026", "title": "Jubiläumsschützenfest", "sub": "375 Jahre Alt & Bollhorst" },
-    { "date": "16.05.2026", "title": "Jubiläumsschützenfest", "sub": "Rothenberge" },
-    { "date": "30.05.2026", "title": "Jubiläumsschützenfest", "sub": "400 Jahre Wester" },
-    { "date": "19.07.2026", "title": "Kinderschützenfest", "sub": "" },
-    { "date": "29.08.2026", "title": "Fahne wegbringen und Rosen machen", "sub": "" },
-    { "date": "11.–14.09.2026", "title": "Jubiläumsschützenfest", "sub": "375 Jahre Oster" },
-    { "date": "31.10.2026", "title": "Damenkaffee", "sub": "bei Happens Hof auf dem Saal, 15:00 Uhr" },
-    { "date": "17.04.2027", "title": "Fahne wegbringen", "sub": "" }
+    {
+      "date": "19.07.2026",
+      "title": "Kinderschützenfest",
+      "sub": ""
+    },
+    {
+      "date": "29.08.2026",
+      "title": "Fahne wegbringen und Rosen machen",
+      "sub": ""
+    },
+    {
+      "date": "11.–14.09.2026",
+      "title": "Jubiläumsschützenfest",
+      "sub": "375 Jahre Oster"
+    },
+    {
+      "date": "31.10.2026",
+      "title": "Damenkaffee",
+      "sub": "bei Happens Hof auf dem Saal, 15:00 Uhr"
+    },
+    {
+      "date": "17.04.2027",
+      "title": "Fahne wegbringen",
+      "sub": ""
+    }
   ]
 }
