@@ -772,7 +772,7 @@
       if (!ehrenItems.length) {
         ehrenEl.innerHTML = '<li class="empty-note" style="list-style:none; background:none; border:none; padding:0;">Noch keine Angaben.</li>';
       } else {
-        ehrenEl.innerHTML = ehrenItems.map(m => `<li>${m.name || ''}${m.jahre ? `<span class="jahre">aktiv seit ${m.jahre}</span>` : ''}</li>`).join('');
+        ehrenEl.innerHTML = ehrenItems.map(m => `<li>${m.name || ''}${m.jahre ? `<span class="jahre">aktiv: ${m.jahre}</span>` : ''}</li>`).join('');
       }
       if (data.koenige) {
         const k = data.koenige;
