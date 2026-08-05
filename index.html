@@ -260,6 +260,16 @@
   .ablaufplan-block .divider span:first-child{
     font-family:'Fraunces', serif; font-size:1.3rem; color:var(--green); white-space:nowrap;
   }
+  .ablaufplan-day{
+    list-style:none;
+    padding:1.6rem 0 0.6rem !important;
+    border-bottom:none !important;
+  }
+  .ablaufplan-day:first-child{ padding-top:0 !important; }
+  .ablaufplan-day span{
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--gold);
+    font-weight:600;
+  }
 
   /* ---------- Termine ---------- */
   .termine-list{ list-style:none; }
@@ -735,12 +745,21 @@
       const list = document.getElementById('ablaufplanList');
       const items = data.ablaufplan || [];
       if (items.length) {
-        list.innerHTML = items.map(a => `
+        let html = '';
+        let lastTag = null;
+        items.forEach(a => {
+          if (a.tag && a.tag !== lastTag) {
+            html += `<li class="ablaufplan-day"><span>${a.tag}</span></li>`;
+            lastTag = a.tag;
+          }
+          html += `
           <li class="termine-item">
             <span class="termine-date">${a.time || ''}</span>
             ${ringIcon}
             <span class="termine-title">${a.title || ''}${a.sub ? `<span class="sub">${a.sub}</span>` : ''}</span>
-          </li>`).join('');
+          </li>`;
+        });
+        list.innerHTML = html;
       }
     })
     .catch(() => {});
