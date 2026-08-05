@@ -149,9 +149,10 @@ collections:
             name: "ablaufplan"
             widget: "list"
             required: false
-            summary: "{{fields.time}} — {{fields.title}}"
+            summary: "{{fields.tag}} — {{fields.time}} — {{fields.title}}"
             fields:
-              - { label: "Uhrzeit / Tag", name: "time", widget: "string" }
+              - { label: "Tag (Überschrift, z.B. \"Freitag, 11.09.2026\")", name: "tag", widget: "string", required: false, hint: "Nur beim ERSTEN Eintrag eines neuen Tages ausfüllen — erscheint dann als Überschrift. Bei weiteren Programmpunkten desselben Tages leer lassen." }
+              - { label: "Uhrzeit", name: "time", widget: "string" }
               - { label: "Programmpunkt", name: "title", widget: "string" }
               - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
 
