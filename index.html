@@ -263,12 +263,24 @@
     display:none; align-items:center; justify-content:center;
     padding:2.5rem 1.5rem;
     cursor:zoom-out;
+    opacity:0;
+    transition:opacity 0.25s ease;
   }
   #lightbox.open{ display:flex; }
+  #lightbox.show{ opacity:1; }
+  #lightbox figure{ margin:0; text-align:center; max-width:min(640px, 100%); }
   #lightbox img{
-    max-width:min(600px, 100%); max-height:100%;
-    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+    max-width:100%; max-height:78vh;
+    box-shadow:0 30px 70px rgba(0,0,0,0.45);
     cursor:default;
+    display:block; margin:0 auto;
+    transform:scale(0.96);
+    transition:transform 0.25s ease;
+  }
+  #lightbox.show img{ transform:scale(1); }
+  #lightbox figcaption{
+    margin-top:1.1rem; color:rgba(255,253,248,0.65);
+    font-family:'Work Sans', sans-serif; font-size:0.82rem;
   }
   #lightboxClose{
     position:absolute; top:1.5rem; right:1.5rem;
@@ -684,6 +696,14 @@
   </div>
 </footer>
 
+<div id="lightbox">
+  <button id="lightboxClose" aria-label="Schließen">&times;</button>
+  <figure>
+    <img id="lightboxImg" src="" alt="">
+    <figcaption>Plakat 375 Jahre Schützenverein Oster — zum Schließen irgendwo klicken</figcaption>
+  </figure>
+</div>
+
 <div id="cookieBanner" style="display:none;">
   <p>Wir nutzen auf dieser Seite Google Fonts zur Darstellung unserer Schrift. Dabei wird eine Verbindung zu Google-Servern hergestellt und deine IP-Adresse übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
   <div class="cookie-actions">
@@ -948,18 +968,20 @@
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightbox.classList.add('open');
+    requestAnimationFrame(() => requestAnimationFrame(() => lightbox.classList.add('show')));
+    document.body.style.overflow = 'hidden';
   });
 
-  function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src = ''; }
+  function closeLightbox() {
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+    setTimeout(() => { lightbox.classList.remove('open'); lightboxImg.src = ''; }, 250);
+  }
   lightbox.addEventListener('click', closeLightbox);
+  lightboxImg.addEventListener('click', (e) => e.stopPropagation());
   document.getElementById('lightboxClose').addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
-
-<div id="lightbox">
-  <button id="lightboxClose" aria-label="Schließen">&times;</button>
-  <img id="lightboxImg" src="" alt="">
-</div>
 
 </body>
 </html>
