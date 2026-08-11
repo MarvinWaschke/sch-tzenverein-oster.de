@@ -1,0 +1,207 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "content/uploads"
+public_folder: "/content/uploads"
+
+locale: "de"
+
+collections:
+  - name: "texte"
+    label: "Texte (Überschriften)"
+    files:
+      - file: "content/texte.json"
+        label: "Alle Überschriften & Texte"
+        name: "texte"
+        fields:
+          - label: "Startseite / Header"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Große Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+              - { label: "Button 1 (grün/gold)", name: "btn1", widget: "string" }
+              - { label: "Button 2 (Rahmen)", name: "btn2", widget: "string" }
+          - label: "Bereich \"Aktuelles\""
+            name: "aktuelles"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Termine\""
+            name: "termine"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Jubiläum\""
+            name: "jubilaeum"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Der Verein\""
+            name: "verein"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Bereich \"Partner\""
+            name: "partner"
+            widget: "object"
+            fields:
+              - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
+              - { label: "Überschrift", name: "headline", widget: "string" }
+              - { label: "Beschreibungstext", name: "text", widget: "text" }
+
+  - name: "termine"
+    label: "Termine"
+    files:
+      - file: "content/termine.json"
+        label: "Terminliste"
+        name: "termine"
+        fields:
+          - label: "Termine"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Datum (z.B. 10.01.2026)", name: "date", widget: "string" }
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
+
+  - name: "verein"
+    label: "Der Verein"
+    files:
+      - file: "content/verein.json"
+        label: "Vorstand, Festvorstand & Könige"
+        name: "verein"
+        fields:
+          - label: "Vorstand"
+            name: "vorstand"
+            widget: "object"
+            fields:
+              - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+              - label: "Mitglieder"
+                name: "members"
+                widget: "list"
+                summary: "{{fields.role}} — {{fields.name}}"
+                fields:
+                  - { label: "Rolle", name: "role", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string", required: false }
+          - label: "Festvorstand"
+            name: "festvorstand"
+            widget: "object"
+            fields:
+              - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+              - label: "Mitglieder"
+                name: "members"
+                widget: "list"
+                summary: "{{fields.role}} — {{fields.name}}"
+                fields:
+                  - { label: "Rolle", name: "role", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string", required: false }
+          - label: "Ehrenvorstandsmitglieder"
+            name: "ehrenvorstand"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Anzahl aktive Jahre (optional)", name: "jahre", widget: "string", required: false, hint: "z.B. 25 Jahre — nicht das Startjahr" }
+          - label: "Könige & Kaiser"
+            name: "koenige"
+            widget: "object"
+            fields:
+              - label: "Amtierendes Paar"
+                name: "aktuellesPaar"
+                widget: "object"
+                fields:
+                  - { label: "Jahr", name: "jahr", widget: "string" }
+                  - { label: "Typ", name: "typ", widget: "select", options: ["Königspaar", "Kaiserpaar"] }
+                  - { label: "Name(n)", name: "name", widget: "string" }
+                  - { label: "Bild", name: "photo", widget: "image", required: false }
+                  - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+              - { label: "Gruppenbild Königspaar & Festvorstand", name: "gruppenbildFestvorstand", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "gruppenbildFestvorstandPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+              - label: "Chronik"
+                name: "historie"
+                widget: "list"
+                summary: "{{fields.jahr}} — {{fields.name}}"
+                fields:
+                  - { label: "Jahr", name: "jahr", widget: "string" }
+                  - { label: "Typ", name: "typ", widget: "select", options: ["Königspaar", "Kaiserpaar"] }
+                  - { label: "Name(n)", name: "name", widget: "string" }
+
+  - name: "jubilaeum"
+    label: "Jubiläum 2026"
+    files:
+      - file: "content/jubilaeum.json"
+        label: "Plakat & Ablaufplan"
+        name: "jubilaeum"
+        fields:
+          - { label: "Plakat (Bild)", name: "posterImage", widget: "image", required: false, hint: "Am besten als JPG/PNG hochladen, Hochformat" }
+          - label: "Ablaufplan"
+            name: "ablaufplan"
+            widget: "list"
+            required: false
+            summary: "{{fields.tag}} — {{fields.time}} — {{fields.title}}"
+            fields:
+              - { label: "Tag (Überschrift, z.B. \"Freitag, 11.09.2026\")", name: "tag", widget: "string", required: false, hint: "Nur beim ERSTEN Eintrag eines neuen Tages ausfüllen — erscheint dann als Überschrift. Bei weiteren Programmpunkten desselben Tages leer lassen." }
+              - { label: "Uhrzeit", name: "time", widget: "string" }
+              - { label: "Programmpunkt", name: "title", widget: "string" }
+              - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
+
+  - name: "einstellungen"
+    label: "Einstellungen"
+    files:
+      - file: "content/settings.json"
+        label: "Website-Einstellungen"
+        name: "settings"
+        fields:
+          - { label: "Header-Bild", name: "heroImage", widget: "image", required: false, hint: "Querformat empfohlen, mind. 1600px breit" }
+          - { label: "Bildausschnitt", name: "heroImagePosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+          - { label: "Alt-Text (Bildbeschreibung)", name: "heroImageAlt", widget: "string", required: false }
+
+  - name: "aktuelles"
+    label: "Aktuelles"
+    files:
+      - file: "content/aktuelles.json"
+        label: "Beiträge"
+        name: "aktuelles"
+        fields:
+          - label: "Beiträge"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+              - { label: "Bild (optional)", name: "image", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "imagePosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
+              - { label: "Text", name: "text", widget: "text" }
+
+  - name: "partner"
+    label: "Partner"
+    files:
+      - file: "content/partner.json"
+        label: "Partnerliste"
+        name: "partner"
+        fields:
+          - label: "Partner"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Logo (optional)", name: "logo", widget: "image", required: false }
+              - { label: "Adresse (optional)", name: "address", widget: "text", required: false, hint: "Mehrzeilig möglich, z.B. Straße + PLZ Ort" }
+              - { label: "Website (optional)", name: "website", widget: "string", required: false, hint: "z.B. www.beispiel-firma.de" }
