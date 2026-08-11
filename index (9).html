@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schützenverein Oster e.V.</title>
+<meta name="description" content="Schützenverein Oster e.V. — Tradition, Gemeinschaft und Schützenfeste in Oster bei Ochtrup.">
+<!-- Google Fonts werden erst nach Cookie-Einwilligung geladen (siehe Skript am Seitenende) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --paper-dim:#EFEAE0;
+    --green:#1E3628;
+    --green-deep:#152820;
+    --gold:#A9812F;
+    --gold-soft:#D9C48B;
+    --ink:#23241F;
+    --ink-soft:#5B5A50;
+    --line:#C8BFA8;
+    --white:#FFFDF8;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--green);
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  img{max-width:100%; display:block;}
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    display:inline-block;
+    margin-bottom:0.9rem;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 1.5rem;
+  }
+
+  /* ---------- Ring motif (signature element) ---------- */
+  .ring-svg circle{
+    fill:none;
+    stroke:currentColor;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.1rem 1.5rem;
+    max-width:1120px;
+    margin:0 auto;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--green);
+  }
+
+  .brand svg{width:28px; height:28px; color:var(--gold);}
+
+  nav.links{
+    display:flex;
+    gap:2rem;
+    font-size:0.88rem;
+    font-weight:500;
+  }
+
+  nav.links a{
+    color:var(--ink-soft);
+    position:relative;
+    padding:0.2rem 0;
+    transition:color 0.2s ease;
+  }
+  nav.links a:hover, nav.links a:focus-visible{ color:var(--green); }
+  nav.links a::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-4px;
+    height:2px; background:var(--gold);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform 0.25s ease;
+  }
+  nav.links a:hover::after, nav.links a:focus-visible::after{ transform:scaleX(1); }
+
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; color:var(--green); }
+
+  @media (max-width: 760px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden;
+      transition:max-height 0.3s ease;
+    }
+    nav.links.open{ max-height:400px; }
+    nav.links a{ padding:1rem 1.5rem; border-top:1px solid var(--line); }
+    .menu-toggle{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:5rem 0 6rem;
+    background:var(--green);
+    color:var(--white);
+  }
+
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 0.6s ease;
+  }
+  .hero-bg.in{ opacity:1; }
+
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(115deg, rgba(21,40,32,0.94) 0%, rgba(21,40,32,0.78) 45%, rgba(21,40,32,0.55) 100%);
+  }
+
+  .hero-rings{
+    position:absolute;
+    right:-120px; top:50%; transform:translateY(-50%);
+    width:560px; height:560px;
+    opacity:0.16;
+    filter:brightness(0) invert(1);
+    pointer-events:none;
+  }
+  @media (max-width:900px){ .hero-rings{ right:-220px; opacity:0.12; } }
+
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    max-width:640px;
+  }
+
+  .hero .eyebrow{ color:var(--gold-soft); }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    color:var(--white);
+    line-height:1.05;
+    margin-bottom:1.2rem;
+  }
+
+  .hero p.lead{
+    font-size:1.1rem;
+    color:rgba(255,253,248,0.82);
+    max-width:520px;
+    margin-bottom:2.2rem;
+  }
+
+  .btn-row{ display:flex; gap:1rem; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    padding:0.85rem 1.6rem;
+    font-size:0.88rem; font-weight:600;
+    border-radius:2px;
+    transition:all 0.2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--gold); color:var(--green-deep); }
+  .btn-primary:hover{ background:var(--gold-soft); }
+  .btn-ghost{ border-color:rgba(255,253,248,0.4); color:var(--white); }
+  .btn-ghost:hover{ border-color:var(--white); }
+
+  /* ---------- Section basics ---------- */
+  section{ padding:5.5rem 0; }
+  .section-head{ max-width:640px; margin-bottom:3rem; }
+  .section-head h2{ font-size:clamp(1.8rem, 3vw, 2.4rem); }
+  .section-head p{ color:var(--ink-soft); margin-top:0.8rem; font-size:1.02rem; }
+
+  .divider{
+    display:flex; align-items:center; gap:0.9rem;
+    color:var(--gold);
+    margin-bottom:1.4rem;
+  }
+  .divider .line{ flex:1; height:1px; background:var(--line); }
+
+  /* ---------- Jubiläum feature ---------- */
+  .jubilaeum{
+    background:var(--paper-dim);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+
+  .jubilaeum-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:3rem;
+    align-items:center;
+  }
+  @media (max-width:820px){ .jubilaeum-grid{ grid-template-columns:1fr; } }
+
+  .poster-visual{ display:flex; justify-content:center; padding:2rem 0; }
+
+  .poster-frame{
+    background:var(--white);
+    padding:10px 10px 26px;
+    box-shadow:0 25px 45px rgba(21,40,32,0.28), 0 4px 12px rgba(21,40,32,0.15);
+    transform:rotate(-4deg);
+    max-width:280px;
+    transition:transform 0.3s ease;
+  }
+  .poster-frame:hover{ transform:rotate(-1deg) scale(1.02); }
+  .poster-frame img{ width:100%; display:block; }
+  .poster-frame .empty-note{ width:220px; }
+
+  .ablaufplan-block{ margin-top:4rem; padding-top:3rem; border-top:1px solid var(--line); }
+  .ablaufplan-block .divider span:first-child{
+    font-family:'Fraunces', serif; font-size:1.3rem; color:var(--green); white-space:nowrap;
+  }
+  .ablaufplan-day{
+    list-style:none;
+    padding:1.6rem 0 0.6rem !important;
+    border-bottom:none !important;
+  }
+  .ablaufplan-day:first-child{ padding-top:0 !important; }
+  .ablaufplan-day span{
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--gold);
+    font-weight:600;
+  }
+
+  /* ---------- Termine ---------- */
+  .termine-list{ list-style:none; }
+  .termine-item{
+    display:grid;
+    grid-template-columns:130px 40px 1fr;
+    align-items:center;
+    gap:1.2rem;
+    padding:1.3rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .termine-item:first-child{ border-top:1px solid var(--line); }
+  .termine-date{ font-weight:600; color:var(--green); font-size:0.95rem; }
+  .termine-ring{ color:var(--gold); }
+  .termine-title{ font-size:1.02rem; }
+  .termine-title .sub{ display:block; font-size:0.85rem; color:var(--ink-soft); margin-top:0.15rem; }
+
+  @media (max-width:600px){
+    .termine-item{ grid-template-columns:32px 1fr; grid-template-rows:auto auto; }
+    .termine-date{ grid-column:2; order:1; font-size:0.85rem; }
+    .termine-ring{ grid-row:1/3; }
+    .termine-title{ grid-column:2; order:2; }
+  }
+
+  /* ---------- Verein / Vorstand ---------- */
+  .verein-block{ margin-top:3.5rem; }
+  .verein-block:first-of-type{ margin-top:0; }
+  .verein-block-title{
+    font-size:1.4rem; color:var(--green); margin-bottom:1.3rem;
+    padding-bottom:0.8rem; border-bottom:1px solid var(--line);
+  }
+
+  .group-photo{
+    width:100%; aspect-ratio:16/9; max-height:420px;
+    background:var(--white); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; margin-bottom:1.6rem;
+  }
+  .group-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .role-list{
+    list-style:none;
+    display:grid; grid-template-columns:1fr 1fr; gap:0 2.5rem;
+  }
+  .role-list li{
+    display:flex; justify-content:space-between; gap:1rem;
+    padding:0.6rem 0; border-bottom:1px dotted var(--line);
+    font-size:0.92rem;
+  }
+  .role-list .role{ color:var(--ink-soft); }
+  .role-list .person{ font-weight:600; color:var(--green); text-align:right; }
+  @media (max-width:640px){ .role-list{ grid-template-columns:1fr; } }
+
+  .ehrenvorstand-block{ margin-top:2.5rem !important; }
+  .ehren-list{
+    list-style:none;
+    display:flex; flex-wrap:wrap; gap:0.7rem;
+  }
+  .ehren-list li{
+    background:var(--white); border:1px solid var(--line);
+    padding:0.55rem 1rem; font-size:0.88rem; color:var(--green);
+    display:flex; align-items:baseline; gap:0.5rem;
+  }
+  .ehren-list li .jahre{ color:var(--ink-soft); font-size:0.78rem; }
+
+  .koenige-current{
+    display:flex; gap:2rem; align-items:center; flex-wrap:wrap;
+  }
+  .koenige-current .group-photo.koenige-photo{
+    width:220px; aspect-ratio:3/4; max-height:none; margin-bottom:0; flex-shrink:0;
+  }
+  .koenige-name{ font-family:'Fraunces', serif; font-size:1.6rem; color:var(--green); margin-top:0.4rem; }
+
+  .koenige-history{ max-height:420px; overflow-y:auto; border:1px solid var(--line); background:var(--white); }
+  .koenige-history table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .koenige-history th{
+    position:sticky; top:0; background:var(--paper-dim); text-align:left;
+    padding:0.7rem 1rem; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .koenige-history td{ padding:0.55rem 1rem; border-bottom:1px solid var(--line); color:var(--ink); }
+  .koenige-history td.jahr{ font-weight:600; color:var(--green); white-space:nowrap; }
+  .koenige-history td.typ{ color:var(--gold); white-space:nowrap; }
+  .koenige-history tr:last-child td{ border-bottom:none; }
+
+  /* ---------- Aktuelles ---------- */
+  .aktuelles-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:2rem;
+  }
+  .aktuelles-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .aktuelles-card img{ width:100%; height:auto; aspect-ratio:6/3; object-fit:cover; display:block; }
+  .aktuelles-card .body{ padding:1.5rem; }
+  .aktuelles-card .date{ font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.5rem; display:block; }
+  .aktuelles-card h3{ font-size:1.1rem; margin-bottom:0.6rem; }
+  .aktuelles-card p{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:0.7rem; }
+  .aktuelles-card p:last-child{ margin-bottom:0; }
+  .empty-note{ color:var(--ink-soft); font-size:0.92rem; font-style:italic; }
+
+  /* ---------- Partner ---------- */
+  .partner-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.5rem;
+    padding-top:1rem;
+  }
+  .partner-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    display:flex; flex-direction:column; gap:0.9rem;
+  }
+  .partner-card .logo-wrap{
+    height:56px; display:flex; align-items:center; justify-content:flex-start;
+  }
+  .partner-card .logo-wrap img{ max-height:56px; max-width:150px; object-fit:contain; }
+  .partner-card .logo-wrap .logo-fallback{
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--green);
+  }
+  .partner-card h3{ font-size:1.02rem; color:var(--green); }
+  .partner-card address{ font-style:normal; font-size:0.86rem; color:var(--ink-soft); line-height:1.5; }
+  .partner-card a.website-link{
+    font-size:0.86rem; color:var(--gold); font-weight:600;
+    display:inline-flex; align-items:center; gap:0.3rem; width:fit-content;
+  }
+  .partner-card a.website-link:hover{ color:var(--green); }
+  .partner-slot{
+    width:150px; height:70px;
+    border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:0.75rem;
+    text-align:center;
+  }
+
+  /* ---------- Contact / Footer ---------- */
+  footer{
+    background:var(--green-deep);
+    color:rgba(255,253,248,0.85);
+    padding:4.5rem 0 2rem;
+  }
+
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    gap:3rem;
+    padding-bottom:3rem;
+    border-bottom:1px solid rgba(255,253,248,0.15);
+  }
+  @media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; gap:2.2rem; } }
+
+  footer h3{ color:var(--gold-soft); font-size:1rem; margin-bottom:1rem; font-family:'Fraunces', serif; }
+  footer .brand-footer{ font-family:'Fraunces', serif; font-size:1.3rem; color:var(--white); margin-bottom:0.8rem; }
+  footer p, footer a{ font-size:0.92rem; color:rgba(255,253,248,0.75); }
+  footer a:hover{ color:var(--gold-soft); }
+  footer address{ font-style:normal; line-height:1.8; }
+  footer .contact-list{ list-style:none; display:grid; gap:0.6rem; }
+
+  .bottom-bar{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+    padding-top:1.6rem;
+    font-size:0.8rem;
+    color:rgba(255,253,248,0.5);
+  }
+  .bottom-bar a{ color:rgba(255,253,248,0.5); }
+  .bottom-bar a:hover{ color:var(--gold-soft); }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  /* ---------- Cookie-Banner ---------- */
+  #cookieBanner{
+    position:fixed; left:0; right:0; bottom:0; z-index:100;
+    background:var(--green-deep); color:var(--white);
+    padding:1.3rem 1.5rem; box-shadow:0 -8px 24px rgba(0,0,0,0.2);
+    display:flex; flex-wrap:wrap; gap:1.2rem; align-items:center; justify-content:space-between;
+  }
+  #cookieBanner p{ font-size:0.86rem; color:rgba(255,253,248,0.82); max-width:640px; margin:0; line-height:1.5; }
+  #cookieBanner a{ color:var(--gold-soft); text-decoration:underline; }
+  #cookieBanner .cookie-actions{ display:flex; gap:0.7rem; flex-wrap:wrap; }
+  #cookieBanner button{
+    font-family:'Work Sans', sans-serif; font-size:0.84rem; font-weight:600;
+    padding:0.65rem 1.3rem; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  }
+  #cookieBanner .btn-accept{ background:var(--gold); color:var(--green-deep); }
+  #cookieBanner .btn-accept:hover{ background:var(--gold-soft); }
+  #cookieBanner .btn-essential{ background:transparent; border-color:rgba(255,253,248,0.4); color:var(--white); }
+  #cookieBanner .btn-essential:hover{ border-color:var(--white); }
+  #cookieSettingsLink{ cursor:pointer; }
+  @media (max-width:640px){ #cookieBanner{ flex-direction:column; align-items:stretch; text-align:left; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="content/uploads/logo.png" alt="Logo Schützenverein Oster e.V." style="height:38px; width:auto;">
+      Schützenverein Oster e.V.
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav class="links" id="navLinks">
+      <a href="#aktuelles">Aktuelles</a>
+      <a href="#termine">Termine</a>
+      <a href="#jubilaeum">Jubiläum 2026</a>
+      <a href="#verein">Verein</a>
+      <a href="#partner">Partner</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <img class="hero-rings" src="content/uploads/logo.png" alt="">
+    <div class="wrap hero-inner">
+      <span class="eyebrow" id="txt-hero-eyebrow">Oster · bei Ochtrup</span>
+      <h1 id="txt-hero-headline">Tradition, die man&nbsp;feiert.</h1>
+      <p class="lead" id="txt-hero-text">Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.</p>
+      <div class="btn-row">
+        <a href="#termine" class="btn btn-primary" id="txt-hero-btn1">Alle Termine</a>
+        <a href="#jubilaeum" class="btn btn-ghost" id="txt-hero-btn2">Jubiläum 2026 entdecken</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AKTUELLES -->
+  <section id="aktuelles">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" id="txt-aktuelles-eyebrow">Neuigkeiten</span>
+        <h2 id="txt-aktuelles-headline">Aktuelles</h2>
+        <p id="txt-aktuelles-text">Was sich im Verein tut — kurz und aktuell.</p>
+      </div>
+      <div class="aktuelles-grid reveal" id="aktuellesGrid">
+        <p class="empty-note">Lade Beiträge…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINE -->
+  <section id="termine">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" id="txt-termine-eyebrow">Auf einen Blick</span>
+        <h2 id="txt-termine-headline">Termine 2026</h2>
+        <p id="txt-termine-text">Vom Winterfest bis zur Generalversammlung — hier steht, wann im Verein etwas los ist.</p>
+      </div>
+      <ul class="termine-list reveal" id="termineList">
+        <li class="empty-note" style="list-style:none; padding:1rem 0;">Lade Termine…</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- JUBILÄUM 2026 -->
+  <section class="jubilaeum" id="jubilaeum">
+    <div class="wrap">
+      <div class="jubilaeum-grid">
+        <div class="reveal">
+          <span class="eyebrow" id="txt-jubilaeum-eyebrow">Besonderes Jahr</span>
+          <h2 id="txt-jubilaeum-headline">375 Jahre Schützenverein Oster</h2>
+          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;" id="txt-jubilaeum-text">2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft.</p>
+        </div>
+        <div class="poster-visual reveal">
+          <div class="poster-frame" id="posterFrame">
+            <p class="empty-note" style="padding:3rem 1rem; text-align:center;">Plakat folgt</p>
+          </div>
+        </div>
+      </div>
+      <div class="ablaufplan-block reveal">
+        <div class="divider"><span>Ablaufplan</span><span class="line"></span></div>
+        <ul class="termine-list" id="ablaufplanList">
+          <li class="empty-note" style="list-style:none; padding:1rem 0;">Ablaufplan folgt in Kürze.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- VEREIN -->
+  <section id="verein" style="background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" id="txt-verein-eyebrow">Wer wir sind</span>
+        <h2 id="txt-verein-headline">Der Verein</h2>
+        <p id="txt-verein-text">Getragen von Vorstand, Festvorstand und vielen ehrenamtlichen Händen — das ist der Schützenverein Oster.</p>
+      </div>
+
+      <!-- Vorstand -->
+      <div class="verein-block reveal">
+        <h3 class="verein-block-title">Vorstand</h3>
+        <div class="group-photo" id="vorstandPhoto"><span class="empty-note">Gruppenbild folgt</span></div>
+        <ul class="role-list" id="vorstandList"><li class="empty-note" style="list-style:none;">Lade…</li></ul>
+      </div>
+
+      <!-- Festvorstand -->
+      <div class="verein-block reveal">
+        <h3 class="verein-block-title">Festvorstand</h3>
+        <div class="group-photo" id="festvorstandPhoto"><span class="empty-note">Gruppenbild folgt</span></div>
+        <ul class="role-list" id="festvorstandList"><li class="empty-note" style="list-style:none;">Lade…</li></ul>
+      </div>
+
+      <!-- Ehrenvorstandsmitglieder -->
+      <div class="verein-block reveal ehrenvorstand-block">
+        <h3 class="verein-block-title" style="font-size:1.1rem;">Ehrenvorstandsmitglieder</h3>
+        <ul class="ehren-list" id="ehrenvorstandList"><li class="empty-note" style="list-style:none;">Lade…</li></ul>
+      </div>
+
+      <!-- Könige & Kaiser -->
+      <div class="verein-block reveal">
+        <h3 class="verein-block-title">Könige &amp; Kaiser</h3>
+
+        <div class="koenige-current" id="koenigeCurrent">
+          <div class="group-photo koenige-photo" id="koenigePhoto"><span class="empty-note">Bild folgt</span></div>
+          <div>
+            <span class="eyebrow" id="koenigeJahr">Amtierendes Königspaar</span>
+            <div class="koenige-name" id="koenigeName">Name folgt</div>
+          </div>
+        </div>
+
+        <div class="group-photo" id="koenigeGruppenPhoto" style="margin-top:2rem;"><span class="empty-note">Gruppenbild Königspaar &amp; Festvorstand folgt</span></div>
+
+        <div class="divider" style="margin-top:3rem;"><span style="font-family:'Fraunces', serif; font-size:1.1rem; color:var(--green); white-space:nowrap;">Chronik seit 1949</span><span class="line"></span></div>
+        <div class="koenige-history" id="koenigeHistory"><p class="empty-note">Lade Chronik…</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARTNER -->
+  <section id="partner">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" id="txt-partner-eyebrow">Danke</span>
+        <h2 id="txt-partner-headline">Unsere Partner</h2>
+        <p id="txt-partner-text">Ohne die Unterstützung unserer Partner aus der Region wären unsere Feste in dieser Form nicht möglich.</p>
+      </div>
+      <div class="partner-row reveal" id="partnerRow">
+        <p class="empty-note">Lade Partner…</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-footer">Schützenverein Oster e.V.</div>
+        <p>Tradition, die man feiert — mitten in Oster bei Ochtrup.</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul class="contact-list">
+          <li><a href="tel:+4916094937225">+49 160 94937225</a></li>
+          <li><a href="mailto:kontakt@schützenverein-oster.de">kontakt@schützenverein-oster.de</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Anschrift</h3>
+        <address>
+          Schützenverein Oster e.V.<br>
+          Oster 326<br>
+          48607 Ochtrup
+        </address>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© 2026 Schützenverein Oster e.V.</span>
+      <span><a href="datenschutz.html">Impressum &amp; Datenschutz</a> · <a id="cookieSettingsLink">Cookie-Einstellungen</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="cookieBanner" style="display:none;">
+  <p>Wir nutzen auf dieser Seite Google Fonts zur Darstellung unserer Schrift. Dabei wird eine Verbindung zu Google-Servern hergestellt und deine IP-Adresse übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-actions">
+    <button class="btn-essential" id="cookieEssentialBtn">Nur essenzielle</button>
+    <button class="btn-accept" id="cookieAcceptBtn">Alle akzeptieren</button>
+  </div>
+</div>
+
+<script>
+  // Mobile menu
+  // ---------- Cookie-Consent ----------
+  const COOKIE_KEY = 'so-cookie-consent'; // 'all' | 'essential'
+
+  function loadGoogleFonts() {
+    if (document.getElementById('gfonts-link')) return;
+    const link = document.createElement('link');
+    link.id = 'gfonts-link';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap';
+    document.head.appendChild(link);
+  }
+
+  function applyConsent(choice) {
+    localStorage.setItem(COOKIE_KEY, choice);
+    if (choice === 'all') loadGoogleFonts();
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
+
+  const savedConsent = localStorage.getItem(COOKIE_KEY);
+  if (savedConsent === 'all') {
+    loadGoogleFonts();
+  } else if (!savedConsent) {
+    document.getElementById('cookieBanner').style.display = 'flex';
+  }
+
+  document.getElementById('cookieAcceptBtn').addEventListener('click', () => applyConsent('all'));
+  document.getElementById('cookieEssentialBtn').addEventListener('click', () => applyConsent('essential'));
+  document.getElementById('cookieSettingsLink').addEventListener('click', () => {
+    document.getElementById('cookieBanner').style.display = 'flex';
+  });
+  // ---------- Ende Cookie-Consent ----------
+
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Redirect from Netlify Identity invite/login links to the admin panel
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+      }
+    });
+  }
+
+  // Jubiläum: Plakat & Ablaufplan laden
+  fetch('content/jubilaeum.json')
+    .then(r => r.json())
+    .then(data => {
+      const frame = document.getElementById('posterFrame');
+      if (data.posterImage) {
+        frame.innerHTML = `<img src="${data.posterImage}" alt="Plakat 375 Jahre Schützenverein Oster">`;
+      }
+      const list = document.getElementById('ablaufplanList');
+      const items = data.ablaufplan || [];
+      if (items.length) {
+        let html = '';
+        let lastTag = null;
+        items.forEach(a => {
+          if (a.tag && a.tag !== lastTag) {
+            html += `<li class="ablaufplan-day"><span>${a.tag}</span></li>`;
+            lastTag = a.tag;
+          }
+          html += `
+          <li class="termine-item">
+            <span class="termine-date">${a.time || ''}</span>
+            ${ringIcon}
+            <span class="termine-title">${a.title || ''}${a.sub ? `<span class="sub">${a.sub}</span>` : ''}</span>
+          </li>`;
+        });
+        list.innerHTML = html;
+      }
+    })
+    .catch(() => {});
+
+  // Texte (Header + Überschriften) laden
+  fetch('content/texte.json')
+    .then(r => r.json())
+    .then(data => {
+      Object.keys(data).forEach(section => {
+        Object.keys(data[section]).forEach(field => {
+          const val = data[section][field];
+          if (!val) return;
+          const el = document.getElementById(`txt-${section}-${field}`);
+          if (el) el.textContent = val;
+        });
+      });
+    })
+    .catch(() => {});
+
+  // Verein: Vorstand, Festvorstand, Könige & Kaiser laden
+  fetch('content/verein.json')
+    .then(r => r.json())
+    .then(data => {
+      const renderPhoto = (elId, path, alt) => {
+        const el = document.getElementById(elId);
+        if (path) el.innerHTML = `<img src="${path}" alt="${alt || ''}">`;
+      };
+      const renderRoles = (elId, members) => {
+        const el = document.getElementById(elId);
+        const items = members || [];
+        if (!items.length) { el.innerHTML = '<li class="empty-note" style="list-style:none;">Noch keine Angaben.</li>'; return; }
+        el.innerHTML = items.map(m => `<li><span class="role">${m.role || ''}</span><span class="person">${m.name || '—'}</span></li>`).join('');
+      };
+
+      if (data.vorstand) {
+        renderPhoto('vorstandPhoto', data.vorstand.photo, 'Vorstand');
+        renderRoles('vorstandList', data.vorstand.members);
+      }
+      if (data.festvorstand) {
+        renderPhoto('festvorstandPhoto', data.festvorstand.photo, 'Festvorstand');
+        renderRoles('festvorstandList', data.festvorstand.members);
+      }
+      const ehrenEl = document.getElementById('ehrenvorstandList');
+      const ehrenItems = data.ehrenvorstand || [];
+      if (!ehrenItems.length) {
+        ehrenEl.innerHTML = '<li class="empty-note" style="list-style:none; background:none; border:none; padding:0;">Noch keine Angaben.</li>';
+      } else {
+        ehrenEl.innerHTML = ehrenItems.map(m => `<li>${m.name || ''}${m.jahre ? `<span class="jahre">aktiv: ${m.jahre}</span>` : ''}</li>`).join('');
+      }
+      if (data.koenige) {
+        const k = data.koenige;
+        if (k.aktuellesPaar) {
+          renderPhoto('koenigePhoto', k.aktuellesPaar.photo, k.aktuellesPaar.name);
+          document.getElementById('koenigeJahr').textContent = `${k.aktuellesPaar.typ || 'Königspaar'} ${k.aktuellesPaar.jahr || ''}`;
+          document.getElementById('koenigeName').textContent = k.aktuellesPaar.name || 'Name folgt';
+        }
+        renderPhoto('koenigeGruppenPhoto', k.gruppenbildFestvorstand, 'Königspaar und Festvorstand');
+        const hist = k.historie || [];
+        const histEl = document.getElementById('koenigeHistory');
+        if (hist.length) {
+          histEl.innerHTML = `<table><thead><tr><th>Jahr</th><th>Typ</th><th>Königspaar / Kaiserpaar</th></tr></thead><tbody>${
+            hist.map(h => `<tr><td class="jahr">${h.jahr || ''}</td><td class="typ">${h.typ || ''}</td><td>${h.name || ''}</td></tr>`).join('')
+          }</tbody></table>`;
+        }
+      }
+    })
+    .catch(() => {});
+
+  // Header-Bild laden (falls im Panel hinterlegt)
+  fetch('content/settings.json')
+    .then(r => r.json())
+    .then(data => {
+      if (data.heroImage) {
+        const bg = document.getElementById('heroBg');
+        bg.style.backgroundImage = `url('${data.heroImage}')`;
+        bg.setAttribute('role', 'img');
+        bg.setAttribute('aria-label', data.heroImageAlt || '');
+        requestAnimationFrame(() => bg.classList.add('in'));
+      }
+    })
+    .catch(() => {});
+
+  const ringIcon = '<img src="content/uploads/logo.png" class="termine-ring" alt="" style="width:20px; height:20px; object-fit:contain; flex-shrink:0;">';
+
+  // Termine laden
+  fetch('content/termine.json')
+    .then(r => r.json())
+    .then(data => {
+      const list = document.getElementById('termineList');
+      const items = data.items || [];
+      if (!items.length) { list.innerHTML = '<li class="empty-note" style="list-style:none; padding:1rem 0;">Aktuell keine Termine eingetragen.</li>'; return; }
+      list.innerHTML = items.map(t => `
+        <li class="termine-item">
+          <span class="termine-date">${t.date || ''}</span>
+          ${ringIcon}
+          <span class="termine-title">${t.title || ''}${t.sub ? `<span class="sub">${t.sub}</span>` : ''}</span>
+        </li>`).join('');
+    })
+    .catch(() => { document.getElementById('termineList').innerHTML = '<li class="empty-note" style="list-style:none; padding:1rem 0;">Termine konnten nicht geladen werden.</li>'; });
+
+  // Aktuelles laden
+  function formatParagraphs(text) {
+    if (!text) return '';
+    return text
+      .split(/\n\s*\n/)                          // Leerzeile = neuer Absatz
+      .map(p => `<p>${p.trim().replace(/\n/g, '<br>')}</p>`) // einzelner Zeilenumbruch = <br>
+      .join('');
+  }
+
+  fetch('content/aktuelles.json')
+    .then(r => r.json())
+    .then(data => {
+      const grid = document.getElementById('aktuellesGrid');
+      const items = (data.items || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+      if (!items.length) { grid.innerHTML = '<p class="empty-note">Aktuell keine Beiträge vorhanden.</p>'; return; }
+      grid.innerHTML = items.map(post => {
+        const d = post.date ? new Date(post.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
+        return `
+        <article class="aktuelles-card">
+          ${post.image ? `<img src="${post.image}" alt="${post.title || ''}">` : ''}
+          <div class="body">
+            <span class="date">${d}</span>
+            <h3>${post.title || ''}</h3>
+            ${formatParagraphs(post.text)}
+          </div>
+        </article>`;
+      }).join('');
+    })
+    .catch(() => { document.getElementById('aktuellesGrid').innerHTML = '<p class="empty-note">Beiträge konnten nicht geladen werden.</p>'; });
+
+  // Partner laden
+  fetch('content/partner.json')
+    .then(r => r.json())
+    .then(data => {
+      const row = document.getElementById('partnerRow');
+      const items = (data.items || []).filter(p => p.name);
+      if (!items.length) { row.innerHTML = '<p class="empty-note">Noch keine Partner eingetragen.</p>'; return; }
+      row.innerHTML = items.map(p => {
+        const logoHtml = p.logo
+          ? `<img src="${p.logo}" alt="${p.name}">`
+          : `<span class="logo-fallback">${p.name}</span>`;
+        let websiteUrl = (p.website || '').trim();
+        if (websiteUrl && !/^https?:\/\//i.test(websiteUrl)) websiteUrl = 'https://' + websiteUrl;
+        return `
+        <div class="partner-card">
+          <div class="logo-wrap">${logoHtml}</div>
+          <h3>${p.name}</h3>
+          ${p.address ? `<address>${p.address.replace(/\n/g, '<br>')}</address>` : ''}
+          ${websiteUrl ? `<a class="website-link" href="${websiteUrl}" target="_blank" rel="noopener">${p.website.replace(/^https?:\/\//i,'')}</a>` : ''}
+        </div>`;
+      }).join('');
+    })
+    .catch(() => { document.getElementById('partnerRow').innerHTML = '<p class="empty-note">Partner konnten nicht geladen werden.</p>'; });
+</script>
+
+</body>
+</html>
