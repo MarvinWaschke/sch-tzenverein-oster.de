@@ -827,9 +827,9 @@
   fetch('content/verein.json')
     .then(r => r.json())
     .then(data => {
-      const renderPhoto = (elId, path, alt) => {
+      const renderPhoto = (elId, path, alt, position) => {
         const el = document.getElementById(elId);
-        if (path) el.innerHTML = `<img src="${path}" alt="${alt || ''}">`;
+        if (path) el.innerHTML = `<img src="${path}" alt="${alt || ''}" style="object-position: center ${position || 'center'};">`;
       };
       const renderRoles = (elId, members) => {
         const el = document.getElementById(elId);
@@ -839,11 +839,11 @@
       };
 
       if (data.vorstand) {
-        renderPhoto('vorstandPhoto', data.vorstand.photo, 'Vorstand');
+        renderPhoto('vorstandPhoto', data.vorstand.photo, 'Vorstand', data.vorstand.photoPosition);
         renderRoles('vorstandList', data.vorstand.members);
       }
       if (data.festvorstand) {
-        renderPhoto('festvorstandPhoto', data.festvorstand.photo, 'Festvorstand');
+        renderPhoto('festvorstandPhoto', data.festvorstand.photo, 'Festvorstand', data.festvorstand.photoPosition);
         renderRoles('festvorstandList', data.festvorstand.members);
       }
       const ehrenEl = document.getElementById('ehrenvorstandList');
@@ -856,11 +856,11 @@
       if (data.koenige) {
         const k = data.koenige;
         if (k.aktuellesPaar) {
-          renderPhoto('koenigePhoto', k.aktuellesPaar.photo, k.aktuellesPaar.name);
+          renderPhoto('koenigePhoto', k.aktuellesPaar.photo, k.aktuellesPaar.name, k.aktuellesPaar.photoPosition);
           document.getElementById('koenigeJahr').textContent = `${k.aktuellesPaar.typ || 'Königspaar'} ${k.aktuellesPaar.jahr || ''}`;
           document.getElementById('koenigeName').textContent = k.aktuellesPaar.name || 'Name folgt';
         }
-        renderPhoto('koenigeGruppenPhoto', k.gruppenbildFestvorstand, 'Königspaar und Festvorstand');
+        renderPhoto('koenigeGruppenPhoto', k.gruppenbildFestvorstand, 'Königspaar und Festvorstand', k.gruppenbildFestvorstandPosition);
         const hist = k.historie || [];
         const histEl = document.getElementById('koenigeHistory');
         if (hist.length) {
@@ -879,6 +879,7 @@
       if (data.heroImage) {
         const bg = document.getElementById('heroBg');
         bg.style.backgroundImage = `url('${data.heroImage}')`;
+        bg.style.backgroundPosition = `center ${data.heroImagePosition || 'center'}`;
         bg.setAttribute('role', 'img');
         bg.setAttribute('aria-label', data.heroImageAlt || '');
         requestAnimationFrame(() => bg.classList.add('in'));
@@ -923,7 +924,7 @@
         const d = post.date ? new Date(post.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
         return `
         <article class="aktuelles-card">
-          ${post.image ? `<img src="${post.image}" alt="${post.title || ''}">` : ''}
+          ${post.image ? `<img src="${post.image}" alt="${post.title || ''}" style="object-position: center ${post.imagePosition || 'center'};">` : ''}
           <div class="body">
             <span class="date">${d}</span>
             <h3>${post.title || ''}</h3>
