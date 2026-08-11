@@ -88,6 +88,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
               - label: "Mitglieder"
                 name: "members"
                 widget: "list"
@@ -100,6 +101,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Gruppenbild", name: "photo", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
               - label: "Mitglieder"
                 name: "members"
                 widget: "list"
@@ -127,7 +129,9 @@ collections:
                   - { label: "Typ", name: "typ", widget: "select", options: ["Königspaar", "Kaiserpaar"] }
                   - { label: "Name(n)", name: "name", widget: "string" }
                   - { label: "Bild", name: "photo", widget: "image", required: false }
+                  - { label: "Bildausschnitt", name: "photoPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
               - { label: "Gruppenbild Königspaar & Festvorstand", name: "gruppenbildFestvorstand", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "gruppenbildFestvorstandPosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
               - label: "Chronik"
                 name: "historie"
                 widget: "list"
@@ -164,6 +168,7 @@ collections:
         name: "settings"
         fields:
           - { label: "Header-Bild", name: "heroImage", widget: "image", required: false, hint: "Querformat empfohlen, mind. 1600px breit" }
+          - { label: "Bildausschnitt", name: "heroImagePosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
           - { label: "Alt-Text (Bildbeschreibung)", name: "heroImageAlt", widget: "string", required: false }
 
   - name: "aktuelles"
@@ -181,6 +186,7 @@ collections:
               - { label: "Titel", name: "title", widget: "string" }
               - { label: "Datum", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
               - { label: "Bild (optional)", name: "image", widget: "image", required: false }
+              - { label: "Bildausschnitt", name: "imagePosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
               - { label: "Text", name: "text", widget: "text" }
 
   - name: "partner"
