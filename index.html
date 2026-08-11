@@ -250,10 +250,35 @@
     transform:rotate(-4deg);
     max-width:280px;
     transition:transform 0.3s ease;
+    cursor:zoom-in;
   }
   .poster-frame:hover{ transform:rotate(-1deg) scale(1.02); }
   .poster-frame img{ width:100%; display:block; }
   .poster-frame .empty-note{ width:220px; }
+
+  /* ---------- Lightbox ---------- */
+  #lightbox{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(15,25,20,0.92);
+    display:none; align-items:center; justify-content:center;
+    padding:2.5rem 1.5rem;
+    cursor:zoom-out;
+  }
+  #lightbox.open{ display:flex; }
+  #lightbox img{
+    max-width:min(600px, 100%); max-height:100%;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+    cursor:default;
+  }
+  #lightboxClose{
+    position:absolute; top:1.5rem; right:1.5rem;
+    width:44px; height:44px; border-radius:50%;
+    background:rgba(255,253,248,0.12); border:1px solid rgba(255,253,248,0.3);
+    color:var(--white); font-size:1.4rem; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  #lightboxClose:hover{ background:rgba(255,253,248,0.22); }
 
   .ablaufplan-block{ margin-top:4rem; padding-top:3rem; border-top:1px solid var(--line); }
   .ablaufplan-block .divider span:first-child{
@@ -912,7 +937,29 @@
       }).join('');
     })
     .catch(() => { document.getElementById('partnerRow').innerHTML = '<p class="empty-note">Partner konnten nicht geladen werden.</p>'; });
+
+  // Lightbox fürs Plakat
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  document.getElementById('posterFrame').addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+  });
+
+  function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src = ''; }
+  lightbox.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
+
+<div id="lightbox">
+  <button id="lightboxClose" aria-label="Schließen">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 </body>
 </html>
