@@ -59,6 +59,18 @@ collections:
               - { label: "Kleiner Text über der Überschrift", name: "eyebrow", widget: "string" }
               - { label: "Überschrift", name: "headline", widget: "string" }
               - { label: "Beschreibungstext", name: "text", widget: "text" }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Vereinsname (fett, oben links)", name: "brandName", widget: "string" }
+              - { label: "Kurzer Slogan darunter", name: "tagline", widget: "string" }
+              - { label: "Telefonnummer", name: "phone", widget: "string" }
+              - { label: "E-Mail-Adresse", name: "email", widget: "string" }
+              - { label: "Anschrift — Name", name: "addressName", widget: "string" }
+              - { label: "Anschrift — Straße & Nr.", name: "addressStreet", widget: "string" }
+              - { label: "Anschrift — PLZ & Ort", name: "addressZipCity", widget: "string" }
+              - { label: "Copyright-Zeile (unten)", name: "copyright", widget: "string" }
 
   - name: "termine"
     label: "Termine"
