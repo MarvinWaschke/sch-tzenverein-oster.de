@@ -296,6 +296,21 @@
   .ablaufplan-block .divider span:first-child{
     font-family:'Fraunces', serif; font-size:1.3rem; color:var(--green); white-space:nowrap;
   }
+
+  .map-embed{
+    width:100%; height:420px;
+    border:1px solid var(--line);
+    overflow:hidden;
+    background:var(--paper-dim);
+  }
+  .map-embed iframe{ width:100%; height:100%; border:0; display:block; }
+  .map-fallback-link{
+    display:inline-block; margin-top:0.9rem;
+    font-family:'Work Sans', sans-serif; font-size:0.86rem; font-weight:600;
+    color:var(--gold);
+  }
+  .map-fallback-link:hover{ color:var(--green); }
+  @media (max-width:600px){ .map-embed{ height:320px; } }
   .ablaufplan-day{
     list-style:none;
     padding:1.6rem 0 0.6rem !important;
@@ -596,6 +611,19 @@
         <ul class="termine-list" id="ablaufplanList">
           <li class="empty-note" style="list-style:none; padding:1rem 0;">Ablaufplan folgt in Kürze.</li>
         </ul>
+      </div>
+      <div class="ablaufplan-block reveal">
+        <div class="divider"><span>Sternmarsch Treffpunkte</span><span class="line"></span></div>
+        <p style="color:var(--ink-soft); margin-bottom:1.3rem; max-width:560px;">Hier findet ihr alle Treffpunkte für den Sternmarsch auf einen Blick.</p>
+        <div class="map-embed">
+          <iframe
+            src="https://umap.openstreetmap.de/de/map/treffpunkte-sternmarsch-schutzenverein-oster_151994?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=false&datalayersControl=true&onLoadPanel=none&captionBar=false#16/52.222134/7.202246"
+            allowfullscreen
+            loading="lazy"
+            title="Karte: Sternmarsch Treffpunkte Schützenverein Oster">
+          </iframe>
+        </div>
+        <a class="map-fallback-link" href="https://umap.openstreetmap.de/de/map/treffpunkte-sternmarsch-schutzenverein-oster_151994#16/52.222134/7.202246" target="_blank" rel="noopener">Karte in groß öffnen ↗</a>
       </div>
     </div>
   </section>
