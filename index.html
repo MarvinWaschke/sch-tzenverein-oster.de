@@ -698,27 +698,27 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="brand-footer">Schützenverein Oster e.V.</div>
-        <p>Tradition, die man feiert — mitten in Oster bei Ochtrup.</p>
+        <div class="brand-footer" id="txt-footer-brandName">Schützenverein Oster e.V.</div>
+        <p id="txt-footer-tagline">Tradition, die man feiert — mitten in Oster bei Ochtrup.</p>
       </div>
       <div>
         <h3>Kontakt</h3>
         <ul class="contact-list">
-          <li><a href="tel:+4916094937225">+49 160 94937225</a></li>
-          <li><a href="mailto:kontakt@schützenverein-oster.de">kontakt@schützenverein-oster.de</a></li>
+          <li><a href="tel:+4916094937225" id="txt-footer-phone">+49 160 94937225</a></li>
+          <li><a href="mailto:kontakt@schützenverein-oster.de" id="txt-footer-email">kontakt@schützenverein-oster.de</a></li>
         </ul>
       </div>
       <div>
         <h3>Anschrift</h3>
         <address>
-          Schützenverein Oster e.V.<br>
-          Oster 326<br>
-          48607 Ochtrup
+          <span id="txt-footer-addressName">Schützenverein Oster e.V.</span><br>
+          <span id="txt-footer-addressStreet">Oster 326</span><br>
+          <span id="txt-footer-addressZipCity">48607 Ochtrup</span>
         </address>
       </div>
     </div>
     <div class="bottom-bar">
-      <span>© 2026 Schützenverein Oster e.V.</span>
+      <span id="txt-footer-copyright">© 2026 Schützenverein Oster e.V.</span>
       <span><a href="datenschutz.html">Impressum &amp; Datenschutz</a> · <a id="cookieSettingsLink">Cookie-Einstellungen</a></span>
     </div>
   </div>
@@ -836,7 +836,7 @@
     })
     .catch(() => {});
 
-  // Texte (Header + Überschriften) laden
+  // Texte (Header + Überschriften + Footer) laden
   fetch('content/texte.json')
     .then(r => r.json())
     .then(data => {
@@ -848,6 +848,17 @@
           if (el) el.textContent = val;
         });
       });
+      // Telefon- und E-Mail-Link (href) passend zum Footer-Text mitaktualisieren
+      if (data.footer) {
+        const phoneEl = document.getElementById('txt-footer-phone');
+        if (data.footer.phone && phoneEl) {
+          phoneEl.href = 'tel:' + data.footer.phone.replace(/[^\d+]/g, '');
+        }
+        const emailEl = document.getElementById('txt-footer-email');
+        if (data.footer.email && emailEl) {
+          emailEl.href = 'mailto:' + data.footer.email;
+        }
+      }
     })
     .catch(() => {});
 
