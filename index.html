@@ -406,25 +406,61 @@
   .koenige-history td.typ{ color:var(--gold); white-space:nowrap; }
   .koenige-history tr:last-child td{ border-bottom:none; }
 
-  /* ---------- Aktuelles ---------- */
+  /* ---------- Aktuelles (Karussell) ---------- */
+  .aktuelles-carousel{ position:relative; }
   .aktuelles-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-    gap:2rem;
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    gap:0;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    border:1px solid var(--line);
   }
+  .aktuelles-grid::-webkit-scrollbar{ display:none; }
   .aktuelles-card{
     background:var(--white);
-    border:1px solid var(--line);
     overflow:hidden;
     display:flex;
     flex-direction:column;
+    flex:0 0 100%;
+    width:100%;
+    scroll-snap-align:start;
   }
-  .aktuelles-card img{ width:100%; height:auto; aspect-ratio:6/3; object-fit:cover; display:block; }
-  .aktuelles-card .body{ padding:1.5rem; }
+  .aktuelles-card img{ width:100%; height:auto; max-height:480px; aspect-ratio:16/8; object-fit:cover; display:block; }
+  .aktuelles-card .body{ padding:2rem 2.2rem 2.2rem; max-width:640px; }
   .aktuelles-card .date{ font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.5rem; display:block; }
-  .aktuelles-card h3{ font-size:1.1rem; margin-bottom:0.6rem; }
-  .aktuelles-card p{ color:var(--ink-soft); font-size:0.92rem; margin-bottom:0.7rem; }
+  .aktuelles-card h3{ font-size:1.35rem; margin-bottom:0.7rem; }
+  .aktuelles-card p{ color:var(--ink-soft); font-size:0.96rem; margin-bottom:0.7rem; }
   .aktuelles-card p:last-child{ margin-bottom:0; }
+
+  .aktuelles-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%;
+    background:var(--white); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; z-index:5; box-shadow:0 6px 16px rgba(21,40,32,0.15);
+    color:var(--green); font-size:1.2rem;
+    transition:background 0.2s ease;
+  }
+  .aktuelles-nav:hover{ background:var(--paper-dim); }
+  .aktuelles-nav.prev{ left:-1px; margin-left:-22px; }
+  .aktuelles-nav.next{ right:-1px; margin-right:-22px; }
+  @media (max-width:640px){
+    .aktuelles-nav{ width:36px; height:36px; }
+    .aktuelles-nav.prev{ margin-left:-8px; }
+    .aktuelles-nav.next{ margin-right:-8px; }
+    .aktuelles-card .body{ padding:1.5rem; }
+  }
+
+  .aktuelles-dots{ display:flex; justify-content:center; gap:0.5rem; margin-top:1.2rem; }
+  .aktuelles-dots button{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--line); border:none; padding:0; cursor:pointer;
+  }
+  .aktuelles-dots button.active{ background:var(--gold); }
+
   .empty-note{ color:var(--ink-soft); font-size:0.92rem; font-style:italic; }
 
   /* ---------- Partner ---------- */
@@ -571,9 +607,14 @@
         <h2 id="txt-aktuelles-headline">Aktuelles</h2>
         <p id="txt-aktuelles-text">Was sich im Verein tut — kurz und aktuell.</p>
       </div>
-      <div class="aktuelles-grid reveal" id="aktuellesGrid">
-        <p class="empty-note">Lade Beiträge…</p>
+      <div class="aktuelles-carousel reveal">
+        <button class="aktuelles-nav prev" id="aktuellesPrev" aria-label="Vorheriger Beitrag">&#8249;</button>
+        <div class="aktuelles-grid" id="aktuellesGrid">
+          <p class="empty-note" style="padding:2rem;">Lade Beiträge…</p>
+        </div>
+        <button class="aktuelles-nav next" id="aktuellesNext" aria-label="Nächster Beitrag">&#8250;</button>
       </div>
+      <div class="aktuelles-dots" id="aktuellesDots"></div>
     </div>
   </section>
 
@@ -958,7 +999,7 @@
     .then(data => {
       const grid = document.getElementById('aktuellesGrid');
       const items = (data.items || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
-      if (!items.length) { grid.innerHTML = '<p class="empty-note">Aktuell keine Beiträge vorhanden.</p>'; return; }
+      if (!items.length) { grid.innerHTML = '<p class="empty-note" style="padding:2rem;">Aktuell keine Beiträge vorhanden.</p>'; return; }
       grid.innerHTML = items.map(post => {
         const d = post.date ? new Date(post.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
         return `
@@ -971,8 +1012,38 @@
           </div>
         </article>`;
       }).join('');
+
+      // Karussell-Steuerung nur einrichten, wenn mehr als ein Beitrag vorhanden ist
+      const prevBtn = document.getElementById('aktuellesPrev');
+      const nextBtn = document.getElementById('aktuellesNext');
+      const dotsEl = document.getElementById('aktuellesDots');
+
+      if (items.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        return;
+      }
+
+      dotsEl.innerHTML = items.map((_, i) => `<button aria-label="Beitrag ${i + 1}"></button>`).join('');
+      const dots = [...dotsEl.children];
+
+      const updateActiveDot = () => {
+        const idx = Math.round(grid.scrollLeft / grid.clientWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      };
+      updateActiveDot();
+      grid.addEventListener('scroll', updateActiveDot);
+
+      const scrollToIndex = (i) => {
+        const clamped = Math.max(0, Math.min(items.length - 1, i));
+        grid.scrollTo({ left: clamped * grid.clientWidth, behavior: 'smooth' });
+      };
+      prevBtn.addEventListener('click', () => scrollToIndex(Math.round(grid.scrollLeft / grid.clientWidth) - 1));
+      nextBtn.addEventListener('click', () => scrollToIndex(Math.round(grid.scrollLeft / grid.clientWidth) + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => scrollToIndex(i)));
     })
-    .catch(() => { document.getElementById('aktuellesGrid').innerHTML = '<p class="empty-note">Beiträge konnten nicht geladen werden.</p>'; });
+    .catch(() => { document.getElementById('aktuellesGrid').innerHTML = '<p class="empty-note" style="padding:2rem;">Beiträge konnten nicht geladen werden.</p>'; });
+
 
   // Partner laden
   fetch('content/partner.json')
