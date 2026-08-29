@@ -410,13 +410,16 @@
   .aktuelles-carousel{ position:relative; }
   .aktuelles-grid{
     display:flex;
+    align-items:flex-start;
     overflow-x:auto;
+    overflow-y:hidden;
     scroll-snap-type:x mandatory;
     scroll-behavior:smooth;
     gap:0;
     scrollbar-width:none;
     -ms-overflow-style:none;
     border:1px solid var(--line);
+    transition:height 0.35s ease;
   }
   .aktuelles-grid::-webkit-scrollbar{ display:none; }
   .aktuelles-card{
@@ -429,7 +432,7 @@
     scroll-snap-align:start;
   }
   .aktuelles-card img{ width:100%; height:auto; max-height:480px; aspect-ratio:16/8; object-fit:cover; display:block; }
-  .aktuelles-card .body{ padding:2rem 2.2rem 2.2rem; max-width:640px; }
+  .aktuelles-card .body{ padding:2rem 2.2rem 2.2rem; width:100%; }
   .aktuelles-card .date{ font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:0.5rem; display:block; }
   .aktuelles-card h3{ font-size:1.35rem; margin-bottom:0.7rem; }
   .aktuelles-card p{ color:var(--ink-soft); font-size:0.96rem; margin-bottom:0.7rem; }
@@ -1013,6 +1016,21 @@
         </article>`;
       }).join('');
 
+      // Höhe des Karussells live an den sichtbaren Beitrag anpassen (keine leeren Flächen)
+      const cards = [...grid.children];
+      const syncHeight = () => {
+        const idx = Math.max(0, Math.min(cards.length - 1, Math.round(grid.scrollLeft / grid.clientWidth)));
+        const card = cards[idx];
+        if (card) grid.style.height = card.scrollHeight + 'px';
+      };
+      syncHeight();
+      window.addEventListener('resize', syncHeight);
+      // Erneut synchronisieren, sobald Bilder nachgeladen sind (können die Höhe verändern)
+      grid.querySelectorAll('img').forEach(img => {
+        if (img.complete) return;
+        img.addEventListener('load', syncHeight, { once: true });
+      });
+
       // Karussell-Steuerung nur einrichten, wenn mehr als ein Beitrag vorhanden ist
       const prevBtn = document.getElementById('aktuellesPrev');
       const nextBtn = document.getElementById('aktuellesNext');
@@ -1032,7 +1050,7 @@
         dots.forEach((d, i) => d.classList.toggle('active', i === idx));
       };
       updateActiveDot();
-      grid.addEventListener('scroll', updateActiveDot);
+      grid.addEventListener('scroll', () => { updateActiveDot(); syncHeight(); });
 
       const scrollToIndex = (i) => {
         const clamped = Math.max(0, Math.min(items.length - 1, i));
