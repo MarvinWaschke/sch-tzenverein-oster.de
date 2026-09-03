@@ -173,6 +173,18 @@ collections:
               - { label: "Uhrzeit", name: "time", widget: "string" }
               - { label: "Programmpunkt", name: "title", widget: "string" }
               - { label: "Zusatzinfo (optional)", name: "sub", widget: "string", required: false }
+      - file: "content/galerie.json"
+        label: "Galerie"
+        name: "galerie"
+        fields:
+          - label: "Bilder"
+            name: "items"
+            widget: "list"
+            required: false
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Bild", name: "image", widget: "image" }
+              - { label: "Bildunterschrift (optional)", name: "caption", widget: "string", required: false }
 
   - name: "einstellungen"
     label: "Einstellungen"
