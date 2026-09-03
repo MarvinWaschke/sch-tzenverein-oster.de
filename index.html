@@ -576,7 +576,7 @@
     <nav class="links" id="navLinks">
       <a href="#aktuelles">Aktuelles</a>
       <a href="#termine">Termine</a>
-      <a href="#jubilaeum">Jubiläum 2026</a>
+      <a href="jubilaeum.html">Jubiläum 2026</a>
       <a href="#verein">Verein</a>
       <a href="#partner">Partner</a>
       <a href="#kontakt">Kontakt</a>
@@ -597,7 +597,7 @@
       <p class="lead" id="txt-hero-text">Der Schützenverein Oster e.V. trägt seit Generationen die Schützenkultur unseres Dorfes: Gemeinschaft, Feste und ein Vereinsleben, das über das Jahr trägt. 2026 feiern wir gleich mehrfach Jubiläum.</p>
       <div class="btn-row">
         <a href="#termine" class="btn btn-primary" id="txt-hero-btn1">Alle Termine</a>
-        <a href="#jubilaeum" class="btn btn-ghost" id="txt-hero-btn2">Jubiläum 2026 entdecken</a>
+        <a href="jubilaeum.html" class="btn btn-ghost" id="txt-hero-btn2">Jubiläum 2026 entdecken</a>
       </div>
     </div>
   </section>
@@ -632,43 +632,6 @@
       <ul class="termine-list reveal" id="termineList">
         <li class="empty-note" style="list-style:none; padding:1rem 0;">Lade Termine…</li>
       </ul>
-    </div>
-  </section>
-
-  <!-- JUBILÄUM 2026 -->
-  <section class="jubilaeum" id="jubilaeum">
-    <div class="wrap">
-      <div class="jubilaeum-grid">
-        <div class="reveal">
-          <span class="eyebrow" id="txt-jubilaeum-eyebrow">Besonderes Jahr</span>
-          <h2 id="txt-jubilaeum-headline">375 Jahre Schützenverein Oster</h2>
-          <p style="color:var(--ink-soft); margin-top:1rem; max-width:520px;" id="txt-jubilaeum-text">2026 feiern wir unser großes Jubiläum: 375 Jahre Schützenverein Oster e.V. Vom 11. bis 14. September laden wir zum Jubiläumsschützenfest ein — mit einem besonderen Programm für die ganze Dorfgemeinschaft.</p>
-        </div>
-        <div class="poster-visual reveal">
-          <div class="poster-frame" id="posterFrame">
-            <p class="empty-note" style="padding:3rem 1rem; text-align:center;">Plakat folgt</p>
-          </div>
-        </div>
-      </div>
-      <div class="ablaufplan-block reveal">
-        <div class="divider"><span>Ablaufplan</span><span class="line"></span></div>
-        <ul class="termine-list" id="ablaufplanList">
-          <li class="empty-note" style="list-style:none; padding:1rem 0;">Ablaufplan folgt in Kürze.</li>
-        </ul>
-      </div>
-      <div class="ablaufplan-block reveal">
-        <div class="divider"><span>Sternmarsch Treffpunkte</span><span class="line"></span></div>
-        <p style="color:var(--ink-soft); margin-bottom:1.3rem; max-width:560px;">Hier findet ihr alle Treffpunkte für den Sternmarsch auf einen Blick.</p>
-        <div class="map-embed">
-          <iframe
-            src="https://umap.openstreetmap.de/de/map/treffpunkte-sternmarsch-schutzenverein-oster_151994?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&allowEdit=false&moreControl=true&searchControl=false&datalayersControl=true&onLoadPanel=none&captionBar=false"
-            allowfullscreen
-            loading="lazy"
-            title="Karte: Sternmarsch Treffpunkte Schützenverein Oster">
-          </iframe>
-        </div>
-        <a class="map-fallback-link" href="https://umap.openstreetmap.de/de/map/treffpunkte-sternmarsch-schutzenverein-oster_151994" target="_blank" rel="noopener">Karte in groß öffnen ↗</a>
-      </div>
     </div>
   </section>
 
@@ -768,22 +731,6 @@
   </div>
 </footer>
 
-<div id="lightbox">
-  <button id="lightboxClose" aria-label="Schließen">&times;</button>
-  <figure>
-    <img id="lightboxImg" src="" alt="">
-    <figcaption>Plakat 375 Jahre Schützenverein Oster — zum Schließen irgendwo klicken</figcaption>
-  </figure>
-</div>
-
-<div id="cookieBanner" style="display:none;">
-  <p>Wir nutzen auf dieser Seite Google Fonts zur Darstellung unserer Schrift. Dabei wird eine Verbindung zu Google-Servern hergestellt und deine IP-Adresse übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-  <div class="cookie-actions">
-    <button class="btn-essential" id="cookieEssentialBtn">Nur essenzielle</button>
-    <button class="btn-accept" id="cookieAcceptBtn">Alle akzeptieren</button>
-  </div>
-</div>
-
 <script>
   // Mobile menu
   // ---------- Cookie-Consent ----------
@@ -849,36 +796,6 @@
       }
     });
   }
-
-  // Jubiläum: Plakat & Ablaufplan laden
-  fetch('content/jubilaeum.json')
-    .then(r => r.json())
-    .then(data => {
-      const frame = document.getElementById('posterFrame');
-      if (data.posterImage) {
-        frame.innerHTML = `<img src="${data.posterImage}" alt="Plakat 375 Jahre Schützenverein Oster">`;
-      }
-      const list = document.getElementById('ablaufplanList');
-      const items = data.ablaufplan || [];
-      if (items.length) {
-        let html = '';
-        let lastTag = null;
-        items.forEach(a => {
-          if (a.tag && a.tag !== lastTag) {
-            html += `<li class="ablaufplan-day"><span>${a.tag}</span></li>`;
-            lastTag = a.tag;
-          }
-          html += `
-          <li class="termine-item">
-            <span class="termine-date">${a.time || ''}</span>
-            ${ringIcon}
-            <span class="termine-title">${a.title || ''}${a.sub ? `<span class="sub">${a.sub}</span>` : ''}</span>
-          </li>`;
-        });
-        list.innerHTML = html;
-      }
-    })
-    .catch(() => {});
 
   // Texte (Header + Überschriften + Footer) laden
   fetch('content/texte.json')
@@ -1086,30 +1003,6 @@
       }).join('');
     })
     .catch(() => { document.getElementById('partnerRow').innerHTML = '<p class="empty-note">Partner konnten nicht geladen werden.</p>'; });
-
-  // Lightbox fürs Plakat
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-
-  document.getElementById('posterFrame').addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-    if (!img) return;
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add('open');
-    requestAnimationFrame(() => requestAnimationFrame(() => lightbox.classList.add('show')));
-    document.body.style.overflow = 'hidden';
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove('show');
-    document.body.style.overflow = '';
-    setTimeout(() => { lightbox.classList.remove('open'); lightboxImg.src = ''; }, 250);
-  }
-  lightbox.addEventListener('click', closeLightbox);
-  lightboxImg.addEventListener('click', (e) => e.stopPropagation());
-  document.getElementById('lightboxClose').addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
