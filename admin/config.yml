@@ -181,10 +181,8 @@ collections:
             name: "items"
             widget: "list"
             required: false
-            summary: "{{fields.caption}}"
-            fields:
-              - { label: "Bild", name: "image", widget: "image" }
-              - { label: "Bildunterschrift (optional)", name: "caption", widget: "string", required: false }
+            hint: "Beim Bild-Auswählen kannst du im Medien-Fenster mehrere Dateien gleichzeitig markieren (Strg/Cmd gedrückt halten oder Mehrfachauswahl-Button) — dann wird für jedes Bild automatisch ein Eintrag angelegt."
+            field: { label: "Bild", name: "image", widget: "image" }
 
   - name: "einstellungen"
     label: "Einstellungen"
