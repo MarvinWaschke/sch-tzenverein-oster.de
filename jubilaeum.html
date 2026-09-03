@@ -929,7 +929,7 @@
       const grid = document.getElementById('galleryGrid');
       const items = data.items || [];
       if (!items.length) { grid.innerHTML = '<p class="empty-note">Noch keine Bilder in der Galerie.</p>'; return; }
-      grid.innerHTML = items.map(it => `<img src="${it.image}" alt="${it.caption || ''}" loading="lazy">`).join('');
+      grid.innerHTML = items.map(src => `<img src="${src}" alt="Galeriebild" loading="lazy">`).join('');
     })
     .catch(() => { document.getElementById('galleryGrid').innerHTML = '<p class="empty-note">Galerie konnte nicht geladen werden.</p>'; });
 </script>
