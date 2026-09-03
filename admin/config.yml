@@ -160,6 +160,8 @@ collections:
         label: "Plakat & Ablaufplan"
         name: "jubilaeum"
         fields:
+          - { label: "Header-Bild der Jubiläumsseite", name: "heroImage", widget: "image", required: false, hint: "Querformat empfohlen, mind. 1600px breit" }
+          - { label: "Bildausschnitt Header-Bild", name: "heroImagePosition", widget: "select", options: [{label: "Oben", value: "top"}, {label: "Mitte", value: "center"}, {label: "Unten", value: "bottom"}], default: "center", required: false }
           - { label: "Plakat (Bild)", name: "posterImage", widget: "image", required: false, hint: "Am besten als JPG/PNG hochladen, Hochformat" }
           - label: "Ablaufplan"
             name: "ablaufplan"
